@@ -1,0 +1,37 @@
+{
+  "format": "glTF 2.0",
+  "meshes": 20,
+  "bytes": 76752,
+  "sourceFacts": {
+    "inputDimensions": [
+      512,
+      512
+    ],
+    "transform": [
+      [
+        1,
+        0,
+        40
+      ],
+      [
+        0,
+        1,
+        24
+      ],
+      [
+        0,
+        0,
+        1
+      ]
+    ],
+    "roiAreas": [
+      2700,
+      3775
+    ],
+    "holes": 1,
+    "parts": 3,
+    "sourceStatus": "decision_required",
+    "exportAvailable": false
+  },
+  "units": "Illustrative display units; not manufacturing or anatomical dimensions"
+}

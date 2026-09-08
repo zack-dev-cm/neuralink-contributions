@@ -10,3 +10,4 @@ aac-audit/stable/
 aac-audit/development/
 local-clickhouse-run/
 .env
+.clawpatch/

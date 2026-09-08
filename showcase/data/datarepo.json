@@ -1,0 +1,92 @@
+{
+  "parts": [
+    {
+      "id": 1,
+      "name": "Bolt",
+      "supplier": 20
+    },
+    {
+      "id": 2,
+      "name": "Nut",
+      "supplier": 10
+    },
+    {
+      "id": 3,
+      "name": "Washer",
+      "supplier": 20
+    },
+    {
+      "id": 4,
+      "name": "Bracket",
+      "supplier": 10
+    }
+  ],
+  "suppliers": [
+    {
+      "id": 10,
+      "name": "Supplier A"
+    },
+    {
+      "id": 20,
+      "name": "Supplier B"
+    }
+  ],
+  "selected_part_ids": [
+    1,
+    2,
+    3
+  ],
+  "recorded_join_result": [
+    {
+      "part_id": 1,
+      "part_name": "Bolt",
+      "supplier_id": 20,
+      "supplier_name": "Supplier B"
+    },
+    {
+      "part_id": 2,
+      "part_name": "Nut",
+      "supplier_id": 10,
+      "supplier_name": "Supplier A"
+    },
+    {
+      "part_id": 3,
+      "part_name": "Washer",
+      "supplier_id": 20,
+      "supplier_name": "Supplier B"
+    }
+  ],
+  "null_fixture": [
+    {
+      "id": 1,
+      "x": null
+    },
+    {
+      "id": 2,
+      "x": 10
+    },
+    {
+      "id": 3,
+      "x": null
+    },
+    {
+      "id": 4,
+      "x": 20
+    }
+  ],
+  "recorded_null_result": [
+    1,
+    3
+  ],
+  "recorded_not_null_result": [
+    2,
+    4
+  ],
+  "evidence_date": "2026-09-08",
+  "references": {
+    "quickstart": "https://github.com/zack-dev-cm/datarepo/blob/ec6b19441c9ebe8abd8dd8a4eef3d42f71aa0927/docs/examples/local_quickstart.py",
+    "null_predicates": "https://github.com/zack-dev-cm/neuralink-contributions/blob/c9841dc/review/D1_PR.md",
+    "tests": "https://github.com/zack-dev-cm/neuralink-contributions/actions/runs/34191476771"
+  },
+  "geometry_scope": "Original illustrative part models; arbitrary dimensions, not manufacturing geometry."
+}

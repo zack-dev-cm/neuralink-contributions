@@ -16,6 +16,15 @@ The standalone SectionCheck repository contains its Apache-2.0 license, authored
 synthetic fixtures and dependency lock. Its dependencies retain their own
 licenses. No real patient, research specimen or AAC user data is included.
 
+The original 3D scenes and media in `showcase/` use Apache-2.0. Their bundled
+Three.js renderer, controls and exporter retain the MIT notice in
+`showcase/vendor/THREE-LICENSE.txt`. The procedural score generator and canvas
+readback comparison adapt MIT-licensed Vehicle Lab work; its notice is retained
+in `showcase/vendor/VEHICLE-LAB-LICENSE.txt`. The new score uses oscillators and
+seeded noise without imported recordings. Fixture sources and display-only
+geometry choices are documented in `showcase/data/provenance.json` and
+`showcase/README.md`; each film has source and output hashes in its capture receipt.
+
 The supplied planning archive is identified by hash in `PROVENANCE.json` and is
 not redistributed here. This publication does not assert ownership of Neuralink,
 AsTeRICS, VALIS or QuPath names or assets and does not imply their endorsement.

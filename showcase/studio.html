@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Inside the work — Independent neural engineering studies</title>
+  <meta name="description" content="Explore SectionCheck synthetic image geometry and datarepo query examples in interactive 3D. Original, source-linked software explanations by Zakhar Pashkin.">
+  <link rel="icon" href="icon.svg"><link rel="stylesheet" href="studio.css">
+  <script type="importmap">{"imports":{"three":"./vendor/three.module.min.js","three/addons/controls/OrbitControls.js":"./vendor/OrbitControls.js"}}</script>
+</head>
+<body>
+  <main id="studio">
+    <canvas id="scene" aria-label="Interactive 3D explanation. Drag to orbit; scroll to zoom."></canvas>
+    <header><a class="brand" href="index.html"><span class="brand-mark">N / E</span> Independent engineering</a><a id="source-link" target="_blank" rel="noopener">Project source ↗</a></header>
+    <section id="story" aria-live="off"><p id="eyebrow"></p><h1 id="title"></h1><p id="subtitle"></p><div id="fact"><strong id="fact-value"></strong><span id="fact-label"></span></div></section>
+    <div id="object-label"></div>
+    <aside id="evidence"><span id="evidence-label"></span><strong id="evidence-value"></strong><p id="evidence-note"></p></aside>
+    <div id="scope">Synthetic examples · illustrative 3D depth</div>
+    <div id="loading" role="status">Building the scene…</div>
+    <nav id="transport" aria-label="Explore the model">
+      <div class="transport-row"><button id="play" type="button">Pause tour</button><button id="inspect" type="button">Inspect in 3D</button><button id="reset" type="button">Reset view</button><button id="sound" type="button" aria-pressed="false">Sound off</button><a id="download" download>Download 3D model</a><span id="clock">00:00 / 00:30</span></div>
+      <label class="timeline-label">Film position <input id="timeline" type="range" min="0" max="30" step="0.01" value="0"></label>
+      <div class="inspection-tools" hidden><label>Separate layers <input id="separate" type="range" min="0" max="1" step="0.01" value="0.4"></label><label><input id="wire" type="checkbox"> Wireframe</label><span>Drag to orbit · scroll or pinch to zoom</span></div>
+      <div id="chapters" aria-label="Film chapters"></div>
+    </nav>
+    <div id="film-progress"><i></i></div>
+  </main>
+  <audio id="music" src="media/score.m4a" loop preload="none"></audio>
+  <script type="module" src="studio.js"></script>
+</body></html>

@@ -1,0 +1,33 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.750
+Follow four synthetic parts through a query and supplier join. The part names come from the quick start. Dimensions are illustrative.
+
+2
+00:00:03.750 --> 00:00:07.500
+A part ID identifies a part. A supplier ID connects it to a supplier. The executable join uses the supplier relationship.
+
+3
+00:00:07.500 --> 00:00:11.250
+Select parts 1, 2 and 3. Leave the bracket outside the result. The example reads the file before temporary storage is removed.
+
+4
+00:00:11.250 --> 00:00:15.000
+Bolt and washer reach Supplier B. Nut reaches Supplier A. The animation follows the saved quick-start output.
+
+5
+00:00:15.000 --> 00:00:18.750
+A missing value must remain an explicit filter in the query. Rows 2 and 4 contain 10 and 20; they stay outside the result.
+
+6
+00:00:18.750 --> 00:00:22.500
+A real local ClickHouse checks the rows returned by the patch. Contributor verification is separate from upstream acceptance.
+
+7
+00:00:22.500 --> 00:00:26.250
+Exercise installed wheels outside the source checkout. The supported minimum is a maintainer-review proposal.
+
+8
+00:00:26.250 --> 00:00:30.000
+Explore the scene, executable example and focused contributions. No Neuralink affiliation or adoption is implied.

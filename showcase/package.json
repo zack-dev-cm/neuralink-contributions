@@ -1,0 +1,14 @@
+{
+  "name": "neural-engineering-showcase",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "license": "Apache-2.0",
+  "scripts": {
+    "dev": "python3 -m http.server 8791 --bind 127.0.0.1",
+    "check": "node --test tools/publish.test.mjs && node tools/regressions.mjs && node tools/gallery-check.mjs && node tools/check.mjs",
+    "capture": "node tools/capture.mjs",
+    "export": "node tools/export.mjs"
+  },
+  "devDependencies": {"playwright": "1.57.0", "three": "0.180.0"}
+}

@@ -1,0 +1,35 @@
+{
+  "kind": "SOURCE_LINKED_SOFTWARE_EXPLANATION",
+  "date": "2026-09-08",
+  "sectioncheck": {
+    "manifest.json": {
+      "sha256": "a24c2a9a9d59ca6d3d52fe5b667b188bcc27815d7f277f705802a9490a88c239",
+      "source": "https://github.com/zack-dev-cm/sectioncheck/blob/c11ee36b86b62f5d73ace0d5029900db1c24cb08/examples/synthetic/manifest.json"
+    },
+    "annotations.json": {
+      "sha256": "fe1ec03ba9a9d5d28becd6fff1fda88b55f65037502654e7642e83af7890691b",
+      "source": "https://github.com/zack-dev-cm/sectioncheck/blob/c11ee36b86b62f5d73ace0d5029900db1c24cb08/examples/synthetic/annotations.json"
+    },
+    "review.json": {
+      "sha256": "9c3c029c8d9862f5731a69ea3bcf80d18886985d26fe2a91649c98ad7acadc78",
+      "source": "https://github.com/zack-dev-cm/sectioncheck/blob/c11ee36b86b62f5d73ace0d5029900db1c24cb08/examples/workflow/review.json"
+    },
+    "source.png": {
+      "sha256": "f156a1f2cbaf93f7429834a4230d0733bca151f2426478bb7315715e6eb9512a",
+      "source": "https://github.com/zack-dev-cm/sectioncheck/blob/c11ee36b86b62f5d73ace0d5029900db1c24cb08/examples/synthetic/source.png"
+    },
+    "target.png": {
+      "sha256": "9d2272cf448ddb939a0248527c2a35925ebed1c1479d851cfc7d289303a19298",
+      "source": "https://github.com/zack-dev-cm/sectioncheck/blob/c11ee36b86b62f5d73ace0d5029900db1c24cb08/examples/synthetic/target.png"
+    }
+  },
+  "display_depth": "Authored separation and extrusion for explanation; input is two-dimensional synthetic geometry.",
+  "datarepo": {
+    "quickstart": "https://github.com/zack-dev-cm/datarepo/blob/ec6b19441c9ebe8abd8dd8a4eef3d42f71aa0927/docs/examples/local_quickstart.py",
+    "null_predicates": "https://github.com/zack-dev-cm/neuralink-contributions/blob/c9841dc/review/D1_PR.md",
+    "tests": "https://github.com/zack-dev-cm/neuralink-contributions/actions/runs/34191476771"
+  },
+  "affiliation": "Independent contributions. No Neuralink affiliation or endorsement.",
+  "validation": "Software demonstration. No anatomical, clinical or researcher validation.",
+  "pixel_display_contract": "Integer pixel centers use (x - 255.5, 255.5 - y) * 0.012 on a 6.144-unit square raster plane. Extrusion and layer separation remain illustrative."
+}
