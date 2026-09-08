@@ -38,3 +38,5 @@ reported separately from the local backend evidence.
 
 Developed with AI assistance. This change uses the public implementation and
 synthetic data; internal-fork coverage is unknown. Maintainer edits are enabled.
+
+Independent hosted verification of this exact submitted commit [passed](https://github.com/zack-dev-cm/neuralink-contributions/actions/runs/34191476771) on Ubuntu 24.04. 135 tests pass with a disposable real ClickHouse and zero skips; Black, fatal Flake8 checks and mypy also pass. This is evidence from the contributor repository; upstream required CI remains subject to maintainer approval.

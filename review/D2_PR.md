@@ -16,3 +16,5 @@ This branch starts independently at
 The branch is based on the current upstream `main` and can be reviewed independently.
 Developed with AI assistance; the example uses only authored synthetic data.
 Maintainer edits are enabled.
+
+Independent hosted verification of this exact submitted commit [passed](https://github.com/zack-dev-cm/neuralink-contributions/actions/runs/34191476771) on Ubuntu 24.04. The documented local example runs and both schema/join/documentation tests pass. This is evidence from the contributor repository; upstream required CI remains subject to maintainer approval.

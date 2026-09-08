@@ -17,8 +17,9 @@ The datarepo branches are independent, each based on upstream
 `1749911db5112858f06ebc1f4b6e614c63ecddeb`. Maintainer edits are enabled on all
 three PRs. The support minimum in D3 is a proposal for maintainer review.
 
-[Independent datarepo CI](https://github.com/zack-dev-cm/neuralink-contributions/actions/workflows/datarepo.yml)
-checks the exact submitted commits. Its results are separate from upstream's
+[Independent datarepo CI passed](https://github.com/zack-dev-cm/neuralink-contributions/actions/runs/34191476771)
+for the exact submitted commits: 135 real-backend tests with zero skips, quality
+checks, two quick-start tests and installed wheels on Python 3.10/3.12. Its results are separate from upstream's
 required checks, which initially require a maintainer to approve fork workflows.
 Upstream approval and merge are not implied by publication or by our own CI.
 

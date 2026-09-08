@@ -1,0 +1,94 @@
+{
+  "recorded_at": "2026-09-08T05:49:10.275627+00:00",
+  "repositories": {
+    "datarepo": "https://github.com/zack-dev-cm/datarepo",
+    "sectioncheck": "https://github.com/zack-dev-cm/sectioncheck",
+    "evidence": "https://github.com/zack-dev-cm/neuralink-contributions"
+  },
+  "datarepo_pull_requests": {
+    "D1": {
+      "checkout": "datarepo",
+      "branch": "fix/clickhouse-null-filters",
+      "base_sha": "1749911db5112858f06ebc1f4b6e614c63ecddeb",
+      "commit_created": true,
+      "patch": "review/D1.patch",
+      "submission": "submitted",
+      "merge": "not_merged",
+      "commit_sha": "66fd1d372c9c2d390e52f541c18457da597cc0c2",
+      "pushed": true,
+      "remote": "https://github.com/zack-dev-cm/datarepo.git",
+      "pull_request": "https://github.com/neuralinkcorp/datarepo/pull/57",
+      "independent_hosted_ci": "passed",
+      "upstream_ci": "awaiting_maintainer_approval"
+    },
+    "D2": {
+      "checkout": "datarepo-docs",
+      "branch": "docs/local-quickstart",
+      "base_sha": "1749911db5112858f06ebc1f4b6e614c63ecddeb",
+      "commit_created": true,
+      "patch": "review/D2.patch",
+      "submission": "submitted",
+      "merge": "not_merged",
+      "commit_sha": "ec6b19441c9ebe8abd8dd8a4eef3d42f71aa0927",
+      "pushed": true,
+      "remote": "https://github.com/zack-dev-cm/datarepo.git",
+      "pull_request": "https://github.com/neuralinkcorp/datarepo/pull/58",
+      "independent_hosted_ci": "passed",
+      "upstream_ci": "awaiting_maintainer_approval"
+    },
+    "D3": {
+      "checkout": "datarepo-compat",
+      "branch": "ci/installed-wheel-smoke",
+      "base_sha": "1749911db5112858f06ebc1f4b6e614c63ecddeb",
+      "commit_created": true,
+      "patch": "review/D3.patch",
+      "submission": "submitted",
+      "merge": "not_merged",
+      "commit_sha": "ed8bdeba5deb66a6421360632745711f73eee5d6",
+      "pushed": true,
+      "remote": "https://github.com/zack-dev-cm/datarepo.git",
+      "pull_request": "https://github.com/neuralinkcorp/datarepo/pull/59",
+      "independent_hosted_ci": "passed",
+      "upstream_ci": "awaiting_maintainer_approval"
+    }
+  },
+  "independent_ci": {
+    "url": "https://github.com/zack-dev-cm/neuralink-contributions/actions/runs/34191476771",
+    "result": "passed",
+    "clickhouse_tests": 135,
+    "clickhouse_skips": 0,
+    "quickstart_tests": 2,
+    "installed_wheel_python": [
+      "3.10",
+      "3.12"
+    ]
+  },
+  "upstream_merge": {
+    "state": "not_merged",
+    "review": "required",
+    "ci": "maintainer_approval_required",
+    "auto_merge_allowed": false,
+    "account_permission": "READ",
+    "maintainer_request": "https://github.com/neuralinkcorp/datarepo/pull/57#issuecomment-5579877534",
+    "formal_reviewer_assignment": "API rejected with HTTP 404; consolidated comment request posted instead"
+  },
+  "sectioncheck": {
+    "version": "0.2.0.dev0",
+    "source_commit": "3a6e4edf081593e94d722d5d4476b8d46a2f9cfa",
+    "release": "https://github.com/zack-dev-cm/sectioncheck/releases/tag/v0.2.0.dev0",
+    "demo": "https://zack-dev-cm.github.io/sectioncheck/",
+    "ci": "https://github.com/zack-dev-cm/sectioncheck/actions/runs/34190288276",
+    "tests_passed": 81,
+    "wheel_download_verified": true,
+    "demo_matches_source": true,
+    "scope": "authored synthetic data only"
+  },
+  "research_gates": {
+    "D1_engineering": "passed",
+    "other_six_gates": "open",
+    "researcher_approval": false,
+    "external_viewer_reimport": "NOT RUN",
+    "aac_user_trial": "NOT RUN"
+  },
+  "source_pack_files_unchanged": 54
+}

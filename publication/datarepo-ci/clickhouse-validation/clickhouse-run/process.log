@@ -1,0 +1,5 @@
+Processing configuration file '/home/runner/work/_temp/clickhouse-run/config.xml'.
+Logging warning to /home/runner/work/_temp/clickhouse-run/server.log
+Logging errors to /home/runner/work/_temp/clickhouse-run/error.log
+2026.09.08 05:40:35.279116 [ 2655 ] {} <Warning> Context: Linux transparent hugepages are set to "always". Check /sys/kernel/mm/transparent_hugepage/enabled
+2026.09.08 05:40:35.279523 [ 2655 ] {} <Warning> Context: Delay accounting is not enabled, OSIOWaitMicroseconds will not be gathered. You can enable it using `sudo sh -c 'echo 1 > /proc/sys/kernel/task_delayacct'` or by using sysctl.

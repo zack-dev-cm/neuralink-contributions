@@ -24,3 +24,5 @@ need a separate repair; the measured failure should not be hidden by the metadat
 
 Developed with AI assistance. Maintainer edits are enabled. This PR can be reviewed
 after the independent correctness fix without blocking it.
+
+Independent hosted verification of this exact submitted commit [passed](https://github.com/zack-dev-cm/neuralink-contributions/actions/runs/34191476771) on Ubuntu 24.04. Fresh wheel build, isolated installation and local Parquet smoke pass on both Python 3.10 and 3.12. This is evidence from the contributor repository; upstream required CI remains subject to maintainer approval.

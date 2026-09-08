@@ -1,0 +1,25 @@
+{
+  "assets": [
+    {
+      "name": "sectioncheck_prototype-0.2.0.dev0-py3-none-any.whl",
+      "sha256": "6bd61b9cb7dc1dc1e5c6f55928663d7ee9e242d7fe92c2a0fb3baec2e4d92254",
+      "download_matches_local": true
+    },
+    {
+      "name": "synthetic-report.html",
+      "sha256": "d634e41e33b5a5848df9bde0cdc3a9ec97989e6cf3fe4593e7de230a9fd586f4",
+      "download_matches_local": true
+    },
+    {
+      "name": "requirements.lock",
+      "sha256": "f330818e36b41f13866f0190afa1460d2b0f5be06ff1a8197bc03c76d3dc1ccd",
+      "download_matches_local": true
+    },
+    {
+      "name": "VALIDATION.json",
+      "sha256": "f40ebe3d3e7bfb691d57d5291cec4b9c983c5f2541a0c5fc5b2299ad6a2e3488",
+      "download_matches_local": true
+    }
+  ],
+  "result": "passed"
+}
