@@ -1,0 +1,26 @@
+{
+  "result": "passed",
+  "assets": [
+    {
+      "name": "CHANGELOG.md",
+      "sha256": "fcc2ef9901c78a53bb424c97d2b3fdd3f8d5aeba17bbfd700e188b92d3a1eb8a"
+    },
+    {
+      "name": "VALIDATION.json",
+      "sha256": "83c30bd1f3425cf3b27c2310a1196cba78e5563b58d82647655bc50f6612a702"
+    },
+    {
+      "name": "requirements.lock",
+      "sha256": "f330818e36b41f13866f0190afa1460d2b0f5be06ff1a8197bc03c76d3dc1ccd"
+    },
+    {
+      "name": "sectioncheck_prototype-0.2.1.dev0-py3-none-any.whl",
+      "sha256": "d267f424e28d34a5960c29578c9f21a62e527ae0408cbcd33c0b65f8df9a8053"
+    },
+    {
+      "name": "synthetic-report.html",
+      "sha256": "4c90626cfce1a149a7c734c4c54e5642b4113edaab0b83c05020e7dc6c530a0c"
+    }
+  ],
+  "downloaded_release": "https://github.com/zack-dev-cm/sectioncheck/releases/tag/v0.2.1.dev0"
+}

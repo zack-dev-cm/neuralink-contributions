@@ -46,8 +46,11 @@ def main():
     }
     for directory, names in evidence.items():
         selected.extend(source / "evidence" / directory / name for name in names)
-    for directory in ["evidence/B-workflow/clean-reviewed", "evidence/B-workflow/browser-reviewed"]:
-        selected.extend(p for p in (source / directory).rglob("*") if p.is_file())
+    for directory in ["evidence/B-workflow/clean-reviewed", "evidence/B-workflow/browser-reviewed",
+                      "evidence/error-review-2026-09-08"]:
+        selected.extend(p for p in (source / directory).rglob("*")
+                        if p.is_file() and p.suffix != ".whl" and p.name != ".gitignore")
+    selected.append(source / "review/ERROR_REVIEW_2026-09-08.md")
     selected.extend(p for p in (source / "publication/sectioncheck-ci").rglob("*")
                     if p.is_file() and p.suffix != ".whl")
     selected.append(source / "publication/sectioncheck-release/VALIDATION.json")

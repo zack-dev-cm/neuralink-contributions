@@ -1,0 +1,146 @@
+{
+  "scope": "synthetic_engineering",
+  "status": "decision_required",
+  "export_available": false,
+  "tool_version": "0.2.1.dev0",
+  "review_fingerprint": "a983e88d86394fc9f847ff424278bcb89dba2aaac1fffb9d69b411ca8e17570d",
+  "bindings": {
+    "manifest_sha256": "a24c2a9a9d59ca6d3d52fe5b667b188bcc27815d7f277f705802a9490a88c239",
+    "annotations_sha256": "fe1ec03ba9a9d5d28becd6fff1fda88b55f65037502654e7642e83af7890691b",
+    "source_image_sha256": "f156a1f2cbaf93f7429834a4230d0733bca151f2426478bb7315715e6eb9512a",
+    "target_image_sha256": "9d2272cf448ddb939a0248527c2a35925ebed1c1479d851cfc7d289303a19298",
+    "check_input_fingerprint": "296c0d151a7433d071f95c37869b20e0c9d679f8e384d239fc56f9c833e2be37",
+    "engine_fingerprint": "53ca6ddeb4d989f0cd915cd8f3706dc702538b06ecb2d4298e52f4e34988dcf9",
+    "workflow_fingerprint": "470af6025eda5ea3d776455f7fa68aa83c40be374c37198c2a3346a5f2b3cc70"
+  },
+  "engines": {
+    "numpy": "2.5.3",
+    "pillow": "12.3.0",
+    "jsonschema": "4.26.0",
+    "shapely": "2.1.2",
+    "geos": "3.13.1"
+  },
+  "required_acknowledgments": [
+    "physical_calibration",
+    "source_footprint"
+  ],
+  "checks": [
+    {
+      "code": "physical_calibration",
+      "status": "not_evaluated",
+      "message": "Physical checks need calibration for both images."
+    },
+    {
+      "code": "rotation",
+      "status": "pass",
+      "message": "Absolute polar rotation: 0 degrees in level0_pixels."
+    },
+    {
+      "code": "principal_scales",
+      "status": "pass",
+      "message": "Principal scales: [1.0, 1.0] in level0_pixels."
+    },
+    {
+      "code": "shear",
+      "status": "pass",
+      "message": "Normalized polar off-diagonal stretch: 0."
+    },
+    {
+      "code": "source_footprint",
+      "status": "warning",
+      "message": "Some transformed source support lies outside the target preview."
+    },
+    {
+      "code": "independent_landmarks",
+      "status": "pass",
+      "message": "3 supplied independent landmarks; maximum error 0 target level-0 pixels. Independence is declared by the fixture author."
+    },
+    {
+      "code": "source_roi_preview",
+      "status": "pass",
+      "message": "All source ROI boundaries lie within the supplied preview."
+    },
+    {
+      "code": "target_roi_preview",
+      "status": "pass",
+      "message": "All target ROI boundaries lie within the supplied preview."
+    }
+  ],
+  "source_annotations": [
+    {
+      "id": "rectangle-with-hole",
+      "label": "Authored rectangle and excluded hole",
+      "type": "Polygon",
+      "parts": 1,
+      "holes": 1,
+      "area_pixels_squared": 2700.0,
+      "bounds_xyxy": [
+        60.0,
+        80.0,
+        110.0,
+        140.0
+      ]
+    },
+    {
+      "id": "two-separated-regions",
+      "label": "Authored triangle and small box",
+      "type": "MultiPolygon",
+      "parts": 2,
+      "holes": 0,
+      "area_pixels_squared": 3775.0,
+      "bounds_xyxy": [
+        130.0,
+        140.0,
+        300.0,
+        335.0
+      ]
+    }
+  ],
+  "target_annotations": [
+    {
+      "id": "rectangle-with-hole",
+      "label": "Authored rectangle and excluded hole",
+      "type": "Polygon",
+      "parts": 1,
+      "holes": 1,
+      "area_pixels_squared": 2700.0,
+      "bounds_xyxy": [
+        100.0,
+        104.0,
+        150.0,
+        164.0
+      ]
+    },
+    {
+      "id": "two-separated-regions",
+      "label": "Authored triangle and small box",
+      "type": "MultiPolygon",
+      "parts": 2,
+      "holes": 0,
+      "area_pixels_squared": 3775.0,
+      "bounds_xyxy": [
+        170.0,
+        164.0,
+        340.0,
+        359.0
+      ]
+    }
+  ],
+  "preview_coverage": {
+    "source": {
+      "total_rois": 2,
+      "fully_visible_rois": 2,
+      "not_fully_visible_ids": []
+    },
+    "target": {
+      "total_rois": 2,
+      "fully_visible_rois": 2,
+      "not_fully_visible_ids": []
+    }
+  },
+  "limitations": [
+    "Synthetic engineering decisions do not establish researcher acceptance or anatomical correctness.",
+    "This local record prevents accidental stale export; it is not authentication or a tamper-proof audit.",
+    "Pixel ROI JSON is a SectionCheck profile; QuPath and VALIS interoperability remain unverified."
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "format": "sectioncheck-pixel-rois",
+  "schema_version": "0.1.0",
+  "domain": "synthetic",
+  "type": "FeatureCollection",
+  "coordinate_space": {
+    "image_id": "synthetic-target",
+    "frame": "level0",
+    "axes": "x_right_y_down",
+    "pixel_centers": "integer",
+    "units": "pixels"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "rectangle-with-hole",
+      "properties": {
+        "label": "Authored rectangle and excluded hole"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              100.0,
+              104.0
+            ],
+            [
+              150.0,
+              104.0
+            ],
+            [
+              150.0,
+              164.0
+            ],
+            [
+              100.0,
+              164.0
+            ],
+            [
+              100.0,
+              104.0
+            ]
+          ],
+          [
+            [
+              110.0,
+              114.0
+            ],
+            [
+              110.0,
+              129.0
+            ],
+            [
+              130.0,
+              129.0
+            ],
+            [
+              130.0,
+              114.0
+            ],
+            [
+              110.0,
+              114.0
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "two-separated-regions",
+      "properties": {
+        "label": "Authored triangle and small box"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                260.0,
+                164.0
+              ],
+              [
+                340.0,
+                194.0
+              ],
+              [
+                290.0,
+                254.0
+              ],
+              [
+                260.0,
+                164.0
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                170.0,
+                334.0
+              ],
+              [
+                195.0,
+                334.0
+              ],
+              [
+                195.0,
+                359.0
+              ],
+              [
+                170.0,
+                359.0
+              ],
+              [
+                170.0,
+                334.0
+              ]
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

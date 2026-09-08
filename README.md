@@ -11,7 +11,7 @@ VALIS or QuPath.
 | D2: Local quick start | [PR #58](https://github.com/neuralinkcorp/datarepo/pull/58) · [patch](review/D2.patch) | [Two documentation/schema/join tests pass](evidence/D2-02/tests-final.log) |
 | D3: Python support and wheels | [PR #59](https://github.com/neuralinkcorp/datarepo/pull/59) · [patch](review/D3.patch) | Python 3.8 wheel resolution and 3.9 import fail; [3.10](evidence/D3-03/python310-final-smoke.json) and [3.12](evidence/D3-03/python312-final-smoke.json) installed-wheel reads pass |
 | AAC: Search visibility mismatch | [Diagnostic source and reproduction](aac-audit/README.md) | Real released/development component methods reproduce the mismatch in Chromium and Firefox, online and offline |
-| SectionCheck 0.2.0.dev0 | [Source](https://github.com/zack-dev-cm/sectioncheck) · [Prerelease](https://github.com/zack-dev-cm/sectioncheck/releases/tag/v0.2.0.dev0) · [Live synthetic report](https://zack-dev-cm.github.io/sectioncheck/) | [81 hosted tests and a fresh installed-wheel exercise pass](https://github.com/zack-dev-cm/sectioncheck/actions/runs/34190288276) |
+| SectionCheck 0.2.1.dev0 | [Source](https://github.com/zack-dev-cm/sectioncheck) · [Prerelease](https://github.com/zack-dev-cm/sectioncheck/releases/tag/v0.2.1.dev0) · [Live synthetic report](https://zack-dev-cm.github.io/sectioncheck/) | [90 hosted tests and a fresh installed-wheel exercise pass](https://github.com/zack-dev-cm/sectioncheck/actions/runs/34193783979) |
 
 The datarepo branches are independent, each based on upstream
 `1749911db5112858f06ebc1f4b6e614c63ecddeb`. Maintainer edits are enabled on all
@@ -23,13 +23,19 @@ checks, two quick-start tests and installed wheels on Python 3.10/3.12. Its resu
 required checks, which initially require a maintainer to approve fork workflows.
 Upstream approval and merge are not implied by publication or by our own CI.
 
+The [error review](review/ERROR_REVIEW_2026-09-08.md) corrected four SectionCheck
+input/geometry/preview issues. Version 0.2.1 requires a fresh report and decision;
+old decisions are rejected as stale. Earlier release files remain unchanged.
+
 ## Reproduce and inspect
 
 - [Datarepo environment, local ClickHouse and wheel reproduction](DATAREPO.md)
 - [AAC source fixture, pinned upstream commits and browser commands](aac-audit/README.md)
 - [SectionCheck coordinate/ROI contract and commands](https://github.com/zack-dev-cm/sectioncheck/blob/main/WORKFLOW.md)
-- [SectionCheck local workflow evidence](evidence/B-workflow/README.md)
-- [Release validation](publication/sectioncheck-release/VALIDATION.json)
+- [Error review and four verified corrections](review/ERROR_REVIEW_2026-09-08.md)
+- [Current SectionCheck hosted evidence](evidence/error-review-2026-09-08/hosted-verification.json)
+- [Historical 0.2.0 workflow evidence](evidence/B-workflow/README.md)
+- [Current wheel and report verification](evidence/error-review-2026-09-08/hosted-verification.json)
 - [Public-source provenance and redactions](PROVENANCE.json)
 - [Licenses and third-party boundaries](NOTICE.md)
 

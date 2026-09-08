@@ -1,0 +1,30 @@
+{
+  "command": [
+    "/workspace/.venvs/sectioncheck-reviewed-wheel/bin/python",
+    "-I",
+    "-m",
+    "sectioncheck.cli",
+    "decide",
+    "manifest.json",
+    "--annotations",
+    "annotations.json",
+    "--review-fingerprint",
+    "a983e88d86394fc9f847ff424278bcb89dba2aaac1fffb9d69b411ca8e17570d",
+    "--reviewer-alias",
+    "automated-synthetic-exercise",
+    "--reason",
+    "Automated protocol exercise using original shapes; no person or researcher approved these data.",
+    "--decision",
+    "approve",
+    "--acknowledge",
+    "physical_calibration",
+    "--acknowledge",
+    "source_footprint",
+    "--out",
+    "/workspace/evidence/error-review-2026-09-08/clean-wheel/decision.json"
+  ],
+  "cwd": "/workspace/evidence/error-review-2026-09-08/clean-wheel/inputs",
+  "duration_seconds": 0.397989,
+  "exit_code": 0,
+  "expected_exit_code": 0
+}

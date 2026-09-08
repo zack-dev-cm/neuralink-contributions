@@ -1,0 +1,217 @@
+FFFFFFFFF                                                                [100%]
+=================================== FAILURES ===================================
+______________ test_named_pipe_image_is_rejected_without_blocking ______________
+
+fixture_pair = ({'schema_version': '0.1.0', 'coordinate_contract': {'vectors': 'column_xy1', 'axes': 'x_right_y_down', 'pixel_centers...298', 'dimensions_xy': [512, 512], ...}, ...}, PosixPath('/tmp/pytest-of-z/pytest-10/test_named_pipe_image_is_rejec0'))
+
+    def test_named_pipe_image_is_rejected_without_blocking(fixture_pair):
+        _, base = fixture_pair
+        (base / "source.png").unlink()
+        os.mkfifo(base / "source.png")
+        # A child process and a deadline keep the regression safe against the old
+        # loader, which blocks while opening this pipe without any writer.
+>       result = subprocess.run(
+            [sys.executable, "-m", "sectioncheck.cli", "report",
+             str(base / "manifest.json"), "--out", str(base / "report")],
+            capture_output=True, text=True, timeout=3,
+        )
+
+tests/test_review_regressions.py:24: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.12/subprocess.py:550: in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/subprocess.py:1209: in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/subprocess.py:2116: in _communicate
+    self._check_timeout(endtime, orig_timeout, stdout, stderr)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Popen: returncode: -9 args: ['/workspace/se...>
+endtime = 10078.680228635, orig_timeout = 3, stdout_seq = [], stderr_seq = []
+skip_check_and_raise = False
+
+    def _check_timeout(self, endtime, orig_timeout, stdout_seq, stderr_seq,
+                       skip_check_and_raise=False):
+        """Convenience for checking if a timeout has expired."""
+        if endtime is None:
+            return
+        if skip_check_and_raise or _time() > endtime:
+>           raise TimeoutExpired(
+                    self.args, orig_timeout,
+                    output=b''.join(stdout_seq) if stdout_seq else None,
+                    stderr=b''.join(stderr_seq) if stderr_seq else None)
+E           subprocess.TimeoutExpired: Command '['/workspace/sectioncheck/../.venvs/sectioncheck/bin/python', '-m', 'sectioncheck.cli', 'report', '/tmp/pytest-of-z/pytest-10/test_named_pipe_image_is_rejec0/manifest.json', '--out', '/tmp/pytest-of-z/pytest-10/test_named_pipe_image_is_rejec0/report']' timed out after 3 seconds
+
+/usr/lib/python3.12/subprocess.py:1253: TimeoutExpired
+___________ test_huge_calibration_is_a_structured_rejection[source] ____________
+
+fixture_pair = ({'schema_version': '0.1.0', 'coordinate_contract': {'vectors': 'column_xy1', 'axes': 'x_right_y_down', 'pixel_centers...298', 'dimensions_xy': [512, 512], ...}, ...}, PosixPath('/tmp/pytest-of-z/pytest-10/test_huge_calibration_is_a_str0'))
+capsys = <_pytest.capture.CaptureFixture object at 0x72e540506d80>
+side = 'source'
+
+    @pytest.mark.parametrize("side", ["source", "target"])
+    def test_huge_calibration_is_a_structured_rejection(fixture_pair, capsys, side):
+        manifest, base = fixture_pair
+        for image in ["source", "target"]:
+            manifest[image]["micrometers_per_pixel_xy"] = [1, 1]
+        manifest[side]["micrometers_per_pixel_xy"] = [10**400, 1]
+        (base / "manifest.json").write_text(json.dumps(manifest))
+>       assert main(["report", str(base / "manifest.json"), "--out", str(base / "out")]) == 2
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_review_regressions.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/sectioncheck/cli.py:69: in main
+    result, images = check(manifest, args.manifest.resolve().parent)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/sectioncheck/checks.py:150: in check
+    physical = physical_linear(manifest)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+manifest = {'schema_version': '0.1.0', 'coordinate_contract': {'vectors': 'column_xy1', 'axes': 'x_right_y_down', 'pixel_centers'..., 'sha256': '9d2272cf448ddb939a0248527c2a35925ebed1c1479d851cfc7d289303a19298', 'dimensions_xy': [512, 512], ...}, ...}
+
+    def physical_linear(manifest):
+        source = manifest["source"]["micrometers_per_pixel_xy"]
+        target = manifest["target"]["micrometers_per_pixel_xy"]
+        if source is None or target is None:
+            return None
+        linear = affine(manifest["transform"]["matrix"])[:2, :2]
+        with np.errstate(over="raise", invalid="raise", divide="raise"):
+            try:
+                result = (
+>                   np.diag(target) @ linear @ np.diag(1 / np.asarray(source, dtype=float))
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                )
+E               OverflowError: int too large to convert to float
+
+src/sectioncheck/geometry.py:97: OverflowError
+___________ test_huge_calibration_is_a_structured_rejection[target] ____________
+
+fixture_pair = ({'schema_version': '0.1.0', 'coordinate_contract': {'vectors': 'column_xy1', 'axes': 'x_right_y_down', 'pixel_centers...298', 'dimensions_xy': [512, 512], ...}, ...}, PosixPath('/tmp/pytest-of-z/pytest-10/test_huge_calibration_is_a_str1'))
+capsys = <_pytest.capture.CaptureFixture object at 0x72e54054de50>
+side = 'target'
+
+    @pytest.mark.parametrize("side", ["source", "target"])
+    def test_huge_calibration_is_a_structured_rejection(fixture_pair, capsys, side):
+        manifest, base = fixture_pair
+        for image in ["source", "target"]:
+            manifest[image]["micrometers_per_pixel_xy"] = [1, 1]
+        manifest[side]["micrometers_per_pixel_xy"] = [10**400, 1]
+        (base / "manifest.json").write_text(json.dumps(manifest))
+>       assert main(["report", str(base / "manifest.json"), "--out", str(base / "out")]) == 2
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_review_regressions.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/sectioncheck/cli.py:69: in main
+    result, images = check(manifest, args.manifest.resolve().parent)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/sectioncheck/checks.py:150: in check
+    physical = physical_linear(manifest)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+manifest = {'schema_version': '0.1.0', 'coordinate_contract': {'vectors': 'column_xy1', 'axes': 'x_right_y_down', 'pixel_centers'..., 'sha256': '9d2272cf448ddb939a0248527c2a35925ebed1c1479d851cfc7d289303a19298', 'dimensions_xy': [512, 512], ...}, ...}
+
+    def physical_linear(manifest):
+        source = manifest["source"]["micrometers_per_pixel_xy"]
+        target = manifest["target"]["micrometers_per_pixel_xy"]
+        if source is None or target is None:
+            return None
+        linear = affine(manifest["transform"]["matrix"])[:2, :2]
+        with np.errstate(over="raise", invalid="raise", divide="raise"):
+            try:
+                result = (
+>                   np.diag(target) @ linear @ np.diag(1 / np.asarray(source, dtype=float))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^
+                )
+E               OverflowError: int too large to convert to float
+
+src/sectioncheck/geometry.py:97: OverflowError
+_________ test_noncanonical_affine_row_is_never_silently_ignored[row0] _________
+
+row = [1e-12, 0, 1]
+
+    @pytest.mark.parametrize("row", [[1e-12, 0, 1], [0, -1e-13, 1], [0, 0, 1 + 5e-13]])
+    def test_noncanonical_affine_row_is_never_silently_ignored(row):
+>       with pytest.raises(InvalidGeometry, match="affine|projective"):
+E       Failed: DID NOT RAISE InvalidGeometry
+
+tests/test_review_regressions.py:49: Failed
+_________ test_noncanonical_affine_row_is_never_silently_ignored[row1] _________
+
+row = [0, -1e-13, 1]
+
+    @pytest.mark.parametrize("row", [[1e-12, 0, 1], [0, -1e-13, 1], [0, 0, 1 + 5e-13]])
+    def test_noncanonical_affine_row_is_never_silently_ignored(row):
+>       with pytest.raises(InvalidGeometry, match="affine|projective"):
+E       Failed: DID NOT RAISE InvalidGeometry
+
+tests/test_review_regressions.py:49: Failed
+_________ test_noncanonical_affine_row_is_never_silently_ignored[row2] _________
+
+row = [0, 0, 1.0000000000005]
+
+    @pytest.mark.parametrize("row", [[1e-12, 0, 1], [0, -1e-13, 1], [0, 0, 1 + 5e-13]])
+    def test_noncanonical_affine_row_is_never_silently_ignored(row):
+>       with pytest.raises(InvalidGeometry, match="affine|projective"):
+E       Failed: DID NOT RAISE InvalidGeometry
+
+tests/test_review_regressions.py:49: Failed
+__ test_rois_outside_preview_require_specific_acknowledgments[partly-clipped] __
+
+fixture_pair = ({'schema_version': '0.1.0', 'coordinate_contract': {'vectors': 'column_xy1', 'axes': 'x_right_y_down', 'pixel_centers...8', 'dimensions_xy': [4096, 4096], ...}, ...}, PosixPath('/tmp/pytest-of-z/pytest-10/test_rois_outside_preview_requ0'))
+offset = 300
+
+    @pytest.mark.parametrize("offset", [300, 2000], ids=["partly-clipped", "fully-hidden"])
+    def test_rois_outside_preview_require_specific_acknowledgments(fixture_pair, offset):
+        review = shifted_review(fixture_pair, offset)
+        codes = {item["code"]: item["status"] for item in review.summary["checks"]}
+>       assert codes.get("source_roi_preview") == "warning"
+E       AssertionError: assert None == 'warning'
+E        +  where None = <built-in method get of dict object at 0x72e540477740>('source_roi_preview')
+E        +    where <built-in method get of dict object at 0x72e540477740> = {'rotation': 'pass', 'principal_scales': 'pass', 'shear': 'pass', 'source_footprint': 'pass', ...}.get
+
+tests/test_review_regressions.py:79: AssertionError
+___ test_rois_outside_preview_require_specific_acknowledgments[fully-hidden] ___
+
+fixture_pair = ({'schema_version': '0.1.0', 'coordinate_contract': {'vectors': 'column_xy1', 'axes': 'x_right_y_down', 'pixel_centers...8', 'dimensions_xy': [4096, 4096], ...}, ...}, PosixPath('/tmp/pytest-of-z/pytest-10/test_rois_outside_preview_requ1'))
+offset = 2000
+
+    @pytest.mark.parametrize("offset", [300, 2000], ids=["partly-clipped", "fully-hidden"])
+    def test_rois_outside_preview_require_specific_acknowledgments(fixture_pair, offset):
+        review = shifted_review(fixture_pair, offset)
+        codes = {item["code"]: item["status"] for item in review.summary["checks"]}
+>       assert codes.get("source_roi_preview") == "warning"
+E       AssertionError: assert None == 'warning'
+E        +  where None = <built-in method get of dict object at 0x72e5404aa140>('source_roi_preview')
+E        +    where <built-in method get of dict object at 0x72e5404aa140> = {'rotation': 'pass', 'principal_scales': 'pass', 'shear': 'pass', 'source_footprint': 'pass', ...}.get
+
+tests/test_review_regressions.py:79: AssertionError
+____________ test_covering_crop_has_no_false_roi_visibility_warning ____________
+
+fixture_pair = ({'schema_version': '0.1.0', 'coordinate_contract': {'vectors': 'column_xy1', 'axes': 'x_right_y_down', 'pixel_centers...8', 'dimensions_xy': [4096, 4096], ...}, ...}, PosixPath('/tmp/pytest-of-z/pytest-10/test_covering_crop_has_no_fals0'))
+
+    def test_covering_crop_has_no_false_roi_visibility_warning(fixture_pair):
+        review = shifted_review(fixture_pair, 2000, frame_offset=2000)
+        codes = {item["code"]: item["status"] for item in review.summary["checks"]}
+>       assert codes.get("source_roi_preview") == "pass"
+E       AssertionError: assert None == 'pass'
+E        +  where None = <built-in method get of dict object at 0x72e5404a5280>('source_roi_preview')
+E        +    where <built-in method get of dict object at 0x72e5404a5280> = {'rotation': 'pass', 'principal_scales': 'pass', 'shear': 'pass', 'source_footprint': 'pass', ...}.get
+
+tests/test_review_regressions.py:99: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_review_regressions.py::test_named_pipe_image_is_rejected_without_blocking
+FAILED tests/test_review_regressions.py::test_huge_calibration_is_a_structured_rejection[source]
+FAILED tests/test_review_regressions.py::test_huge_calibration_is_a_structured_rejection[target]
+FAILED tests/test_review_regressions.py::test_noncanonical_affine_row_is_never_silently_ignored[row0]
+FAILED tests/test_review_regressions.py::test_noncanonical_affine_row_is_never_silently_ignored[row1]
+FAILED tests/test_review_regressions.py::test_noncanonical_affine_row_is_never_silently_ignored[row2]
+FAILED tests/test_review_regressions.py::test_rois_outside_preview_require_specific_acknowledgments[partly-clipped]
+FAILED tests/test_review_regressions.py::test_rois_outside_preview_require_specific_acknowledgments[fully-hidden]
+FAILED tests/test_review_regressions.py::test_covering_crop_has_no_false_roi_visibility_warning
+9 failed in 4.47s

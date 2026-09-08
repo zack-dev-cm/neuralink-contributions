@@ -1,0 +1,15 @@
+{
+  "command": [
+    "../.venvs/sectioncheck/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "--junitxml=../evidence/error-review-2026-09-08/tests-fixed.xml"
+  ],
+  "cwd": "/workspace/sectioncheck",
+  "environment_overrides": {},
+  "started_at": "2026-09-08T06:07:31.838154+00:00",
+  "duration_seconds": 22.944,
+  "exit_code": 0,
+  "output": "tests-fixed.log"
+}

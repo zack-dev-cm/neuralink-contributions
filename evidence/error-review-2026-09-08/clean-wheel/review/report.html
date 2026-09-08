@@ -1,0 +1,255 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src data:; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<title>SectionCheck — synthetic affine review</title>
+<style>body{font:16px/1.5 system-ui,sans-serif;margin:2rem auto;padding:0 1rem;max-width:1100px;color:#172535;background:#fafbfc}h1{margin-bottom:.2rem}.notice{padding:1rem;border-left:4px solid #8a6000;background:#fff4d6}.panels{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}figure{margin:0;background:white;padding:.7rem;border:1px solid #dde2e8}img{max-width:100%;height:auto}table{border-collapse:collapse;table-layout:fixed;width:100%;background:white}th,td{border:1px solid #d5dce3;text-align:left;padding:.6rem;vertical-align:top;overflow-wrap:anywhere}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:.85rem}code{overflow-wrap:anywhere}</style></head><body>
+<h1>SectionCheck</h1><p>Synthetic affine review · version 0.2.1.dev0</p>
+<p class="notice">Engineering prototype. Researcher acceptance is unconfirmed. No decision is recorded by this report. Synthetic ROI export requires a matching explicit decision. Geometric checks do not establish anatomical correctness.</p>
+<h2>Image pair</h2><p>synthetic-source → synthetic-target</p>
+<div class="panels"><figure><img alt="Source preview" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAIAAAB7GkOtAAAJvElEQVR4nO3du5FcRQCGUS2lZEgDhwjAwUUREAcRgIsDEcghDcIZDFGrRZpdjWZnbj++c1xVqVrO/3VfvR5Op9MbAHq+GX0AAMYQAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIh6O/oA1/j2p99HH+G8f/74efQRAC7lBQAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAEznr+9+HH0ESHg4nU6jzwD/8zQAP/z958CTwN4EgBl98giQAbiHt6MPAF/22AMlgBsSAFaiBHBDPgExqUt+K1gG4DW8AFiYBwG8hgCwAyWAK/gExLyu/gsBMgCX8AJgQx4EcAkBYGdKAC/wCYip3fafhZABeMoLgBAPAnhKAChSAnjjExDzO+AfB5UBmrwAwIOAKAGAj5SAFJ+AWMCo/yJGBtibFwA8y4OAvQkAfJkSsCWfgFjDVP9RsAywBy8A+GoeBOxBAOB6SsDSfAJiGVN9BTpLBliLFwDcjAcBaxEAuD0lYAk+AbGS+b8CnSUDzMkLAO7Og4A5CQAcRwmYik9ALGbRr0BnyQBjeQHAMB4EjPXN6ANAnfVnFAFgMZvN5Wa/HNYiADCM9WcsAQCIEgDWs8fFeY9fBUsTABjA+jMDAYCjWX8mIQAsad0NXffk7EcA4DjWn6kIAECUALCq5W7Tyx2Y7QkAHMH6MyEBgLuz/sxJAFjYEsO6xCFpEgC4I+vPzAQAIEoAWNvMV+yZzwZvBADuxPozPwGA27P+LEEAWN5sazvbeeA5AgC3ZP1ZiAAARAkAO5jk3j3JMeBCAgC3Yf1ZjgDADVh/ViQAbGLgBFt/FiUA8CrWn3UJAECUALCP4y/jrv8sTQDgStaf1QkAXMP6swEBYCvH7LL1Zw8CAF/H+rMNAQCIEgB2c9cbuus/OxEAuJT1ZzMCABex/uxHANjQzcfa+rMlAYAvsP7sSgAAogSAPd3q2u76z8YEAJ5l/dmbAMB51p/tCQDbes2CW38KBAA+Zf2JEACAKAFgZ1fc5V3/6RAA+Mj6kyIA8B/rT40AsLkLZ936EyQAYP2JEgCAKAFgfy9f8F3/yRIA0qw/ZQJAl/UnTgBI+HzrrT8IAEXWH94IAECWAFDxeOt3/YcPBIAW6w+PHk6n0+gzADCAFwBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARAkAQJQAAEQJAECUAABECQBAlAAARL0dfQAu8v2v7577ofe//HbkSYBtPJxOp9Fn4LwXRv85YgBcTgBmdMX0PyUDwCUEYC6vnP6nZAB4mQDM4obT/5QMAM/xp4CmcKf1v+vPDKxOAMa790ZrAHCWAAx2zDprAPA5ARjpyF3WAOATAjDM8YusAcBTAjDGqC3WAOCRAAwwdoU1APhAAACiBOBoM1zAZzgDMJwAAEQJwKHmuXrPcxJgFAEAiBKA48x26Z7tPMDBBAAgSgAAogQAIEoADjLnB/c5TwUcQwAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoADvL+l99GH+GMOU8FHEMAAKIEACBKAACiBOA4s31wn+08wMEEACBKAA41z6V7npMAowgAQJQAHG2Gq/cMZwCGEwCAKAEYYOwF3PUf+EAAxhi1wtYfeCQAwxy/xdYfeEoARjpyka0/8AkBGOyYXbb+wOcEYLx7r7P1B84SgCncb6OtP/Cch9PpNPoMfPT9r+9u9VOZfuBlAjCjV2bA9AOXEIB5XZEB0w9cTgDW8EIMjD5wHQEAiPKngACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIOpfrF160+zwEYIAAAAASUVORK5CYII="><figcaption>Source preview</figcaption></figure><figure><img alt="Target preview" src="data:image/png;base64,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4QzAIwEAiBKAhHmu3vOcBBAAgCgBOL/ZLt2znQeyBAAgSgAAogQAIEoATm7OD+5zngpqBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogTg5D69/zj6CBfMeSqoEQCAKAEAiBIAgCgBOL/ZPrjPdh7IEgCAKAFImOfSPc9JAAEAiBKAihmu3jOcAXgkAABRAhAy9gLu+g+zEYCWUSts/WFCApCz/xZbf5iTABTtucjWH6YlAFH77LL1h5kJQNfW62z9YXICkLbdRlt/mN/Dsiyjz8B4bz+8W+unMv1wFALAF3dmwPTDsQgAX7shA6YfjkgAuOZKDIw+HJ0AAET5U0AAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABD1D8SdetP2QffSAAAAAElFTkSuQmCC"><figcaption>Target preview</figcaption></figure><figure><img alt="Source resampled into target" src="data:image/png;base64,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4QzAIwEAiBKAhHmu3vOcBBAAgCgBOL/ZLt2znQeyBAAgSgAAogQAIEoATm7OD+5zngpqBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogTg5D69/zj6CBfMeSqoEQCAKAEAiBIAgCgBOL/ZPrjPdh7IEgCAKAFImOfSPc9JAAEAiBKAihmu3jOcAXgkAABRAhAy9gLu+g+zEYCWUSts/WFCApCz/xZbf5iTABTtucjWH6YlAFH77LL1h5kJQNfW62z9YXICkLbdRlt/mN/Dsiyjz8B4bz+8W+unMv1wFALAF3dmwPTDsQgAX7shA6YfjkgAuOZKDIw+HJ0AAET5U0AAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABD1D8SdetP2QffSAAAAAElFTkSuQmCC"><figcaption>Source resampled into target</figcaption></figure><figure><img alt="50% overlay (visual review only)" src="data:image/png;base64,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4QzAIwEAiBKAhHmu3vOcBBAAgCgBOL/ZLt2znQeyBAAgSgAAogQAIEoATm7OD+5zngpqBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogTg5D69/zj6CBfMeSqoEQCAKAEAiBIAgCgBOL/ZPrjPdh7IEgCAKAFImOfSPc9JAAEAiBKAihmu3jOcAXgkAABRAhAy9gLu+g+zEYCWUSts/WFCApCz/xZbf5iTABTtucjWH6YlAFH77LL1h5kJQNfW62z9YXICkLbdRlt/mN/Dsiyjz8B4bz+8W+unMv1wFALAF3dmwPTDsQgAX7shA6YfjkgAuOZKDIw+HJ0AAET5U0AAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABD1D8SdetP2QffSAAAAAElFTkSuQmCC"><figcaption>50% overlay (visual review only)</figcaption></figure><figure><img alt="Source ROI boundaries (including holes)" src="data:image/png;base64,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AK9xC2gKN5r+N/3KwOoEYLxbz2gNAE4SgMG2mc4aAPyVAIy05VzWAOAFARhm+4msAcBzbgGN8XwW//r4y9W//g+ff3ztt9wLAo6cAAYY+ybuHAAc+SygWZx5Z7/ILc4TwC45AWxthhfwGZ4BGE4AAKIEYFPzvHrP8yTAKAIAECUA25ntpXu25wE2JgAAUQIAECUAAFECsJE5F+5zPhWwDQEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgB2MicP4l3zqcCtiEAAFECABAlAABR94fDYfQzhJz88LVfH3+5+l/0w+cfv/pnfAMA4pwAAKKcALY2yScwe/0HnAAAogRgazO8es/wDMBwAgAQJQADjH0B9/oPHAnAGKOmsOkPPBGAYbafxaY/8JwAjLTlRDb9gRcEYLBt5rLpD/yVAIx36+ls+gMnCcAUbjejTX/gNT4KYi5X/KAIox84TwBm9MEMGP3AWwjAvN6RAaMfeDsBWMOZGBj6wPsIAECUW0AAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABD1fxDdO3+WqeQkAAAAAElFTkSuQmCC"><figcaption>Source ROI boundaries (including holes)</figcaption></figure><figure><img alt="Proposed target ROI boundaries" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAIAAAB7GkOtAAAKmElEQVR4nO3dvXFc1xmA4V0NcxahJhwoliuwKhArcM5AuSuQKpAqsGMHasJFoIJ1gBkQXi8W2N37c+59nyfiDDngTfi993w4XBxPp9MBgJ7v1n4AANYhAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABAlAABRAgAQJQAAUQIAECUAAFECABD1ae0H2Iynr8e1H+Gaz7+c1n4EYGOcAACinABu85f//Lr2I5z78/svaz8CsElOAABRAgAQJQAAUQIAECUAAFECABDlGuhkHryOOeAFU2DfnAAAopwAJnbHi7z/yQWswgkAIEoAAKIEACBKAACiBAAgSgAAogQAIEoAAKIEACBKAACiBAAgSgAAogQAIMqngU7MR3sCW+EEABDlBDAZP9IL2BYnAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAIAoAQCIEgCAKAEAiBIAgCgBAIgSAICoT2s/wMb8+f2XtR8BYBpOAHA4HA5PX49PX49rPwUs6ng6ndZ+Bljf2fT//It/F+yfEwAcDq8m/r/+/beDAwENvgcA554b8OMPf7w0wIGAXRIAuOw5AwclYL98DwC+eR70L6P/zI8//PH8CxlgH5wA4KOshtgZAYDbWA2xG1ZA8D+ub4Eushpio5wA4FFWQ2yUAMA0rIbY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"><figcaption>Proposed target ROI boundaries</figcaption></figure></div>
+<p>Previews are limited to 512 pixels per side. Resampling changes pixels; original inputs remain unchanged.</p>
+<h2>Checks</h2><table><thead><tr><th>Check</th><th>Result</th><th>Evidence</th></tr></thead><tbody><tr><td>physical_calibration</td><td>not_evaluated</td><td>Physical checks need calibration for both images.</td></tr><tr><td>rotation</td><td>pass</td><td>Absolute polar rotation: 0 degrees in level0_pixels.</td></tr><tr><td>principal_scales</td><td>pass</td><td>Principal scales: [1.0, 1.0] in level0_pixels.</td></tr><tr><td>shear</td><td>pass</td><td>Normalized polar off-diagonal stretch: 0.</td></tr><tr><td>source_footprint</td><td>warning</td><td>Some transformed source support lies outside the target preview.</td></tr><tr><td>independent_landmarks</td><td>pass</td><td>3 supplied independent landmarks; maximum error 0 target level-0 pixels. Independence is declared by the fixture author.</td></tr><tr><td>source_roi_preview</td><td>pass</td><td>All source ROI boundaries lie within the supplied preview.</td></tr><tr><td>target_roi_preview</td><td>pass</td><td>All target ROI boundaries lie within the supplied preview.</td></tr></tbody></table>
+<h2>Synthetic annotation decision</h2><p>No decision is recorded by this report. Review all checks and ROI boundaries before recording an explicit CLI decision. Every warning and not-evaluated check needs an acknowledgment. Out-of-bounds or invalid geometry cannot be approved.</p><p>Review fingerprint: <code>a983e88d86394fc9f847ff424278bcb89dba2aaac1fffb9d69b411ca8e17570d</code></p><table><thead><tr><th>ROI</th><th>Shape</th><th>Parts / holes</th><th>Source area (px²)</th><th>Target area (px²)</th></tr></thead><tbody><tr><td>rectangle-with-hole<br>Authored rectangle and excluded hole</td><td>Polygon</td><td>1 / 1</td><td>2700</td><td>2700</td></tr><tr><td>two-separated-regions<br>Authored triangle and small box</td><td>MultiPolygon</td><td>2 / 0</td><td>3775</td><td>3775</td></tr></tbody></table><details><summary>Technical review record (JSON)</summary><pre>{
+  &quot;scope&quot;: &quot;synthetic_engineering&quot;,
+  &quot;status&quot;: &quot;decision_required&quot;,
+  &quot;export_available&quot;: false,
+  &quot;tool_version&quot;: &quot;0.2.1.dev0&quot;,
+  &quot;review_fingerprint&quot;: &quot;a983e88d86394fc9f847ff424278bcb89dba2aaac1fffb9d69b411ca8e17570d&quot;,
+  &quot;bindings&quot;: {
+    &quot;manifest_sha256&quot;: &quot;a24c2a9a9d59ca6d3d52fe5b667b188bcc27815d7f277f705802a9490a88c239&quot;,
+    &quot;annotations_sha256&quot;: &quot;fe1ec03ba9a9d5d28becd6fff1fda88b55f65037502654e7642e83af7890691b&quot;,
+    &quot;source_image_sha256&quot;: &quot;f156a1f2cbaf93f7429834a4230d0733bca151f2426478bb7315715e6eb9512a&quot;,
+    &quot;target_image_sha256&quot;: &quot;9d2272cf448ddb939a0248527c2a35925ebed1c1479d851cfc7d289303a19298&quot;,
+    &quot;check_input_fingerprint&quot;: &quot;296c0d151a7433d071f95c37869b20e0c9d679f8e384d239fc56f9c833e2be37&quot;,
+    &quot;engine_fingerprint&quot;: &quot;53ca6ddeb4d989f0cd915cd8f3706dc702538b06ecb2d4298e52f4e34988dcf9&quot;,
+    &quot;workflow_fingerprint&quot;: &quot;470af6025eda5ea3d776455f7fa68aa83c40be374c37198c2a3346a5f2b3cc70&quot;
+  },
+  &quot;engines&quot;: {
+    &quot;numpy&quot;: &quot;2.5.3&quot;,
+    &quot;pillow&quot;: &quot;12.3.0&quot;,
+    &quot;jsonschema&quot;: &quot;4.26.0&quot;,
+    &quot;shapely&quot;: &quot;2.1.2&quot;,
+    &quot;geos&quot;: &quot;3.13.1&quot;
+  },
+  &quot;required_acknowledgments&quot;: [
+    &quot;physical_calibration&quot;,
+    &quot;source_footprint&quot;
+  ],
+  &quot;checks&quot;: [
+    {
+      &quot;code&quot;: &quot;physical_calibration&quot;,
+      &quot;status&quot;: &quot;not_evaluated&quot;,
+      &quot;message&quot;: &quot;Physical checks need calibration for both images.&quot;
+    },
+    {
+      &quot;code&quot;: &quot;rotation&quot;,
+      &quot;status&quot;: &quot;pass&quot;,
+      &quot;message&quot;: &quot;Absolute polar rotation: 0 degrees in level0_pixels.&quot;
+    },
+    {
+      &quot;code&quot;: &quot;principal_scales&quot;,
+      &quot;status&quot;: &quot;pass&quot;,
+      &quot;message&quot;: &quot;Principal scales: [1.0, 1.0] in level0_pixels.&quot;
+    },
+    {
+      &quot;code&quot;: &quot;shear&quot;,
+      &quot;status&quot;: &quot;pass&quot;,
+      &quot;message&quot;: &quot;Normalized polar off-diagonal stretch: 0.&quot;
+    },
+    {
+      &quot;code&quot;: &quot;source_footprint&quot;,
+      &quot;status&quot;: &quot;warning&quot;,
+      &quot;message&quot;: &quot;Some transformed source support lies outside the target preview.&quot;
+    },
+    {
+      &quot;code&quot;: &quot;independent_landmarks&quot;,
+      &quot;status&quot;: &quot;pass&quot;,
+      &quot;message&quot;: &quot;3 supplied independent landmarks; maximum error 0 target level-0 pixels. Independence is declared by the fixture author.&quot;
+    },
+    {
+      &quot;code&quot;: &quot;source_roi_preview&quot;,
+      &quot;status&quot;: &quot;pass&quot;,
+      &quot;message&quot;: &quot;All source ROI boundaries lie within the supplied preview.&quot;
+    },
+    {
+      &quot;code&quot;: &quot;target_roi_preview&quot;,
+      &quot;status&quot;: &quot;pass&quot;,
+      &quot;message&quot;: &quot;All target ROI boundaries lie within the supplied preview.&quot;
+    }
+  ],
+  &quot;source_annotations&quot;: [
+    {
+      &quot;id&quot;: &quot;rectangle-with-hole&quot;,
+      &quot;label&quot;: &quot;Authored rectangle and excluded hole&quot;,
+      &quot;type&quot;: &quot;Polygon&quot;,
+      &quot;parts&quot;: 1,
+      &quot;holes&quot;: 1,
+      &quot;area_pixels_squared&quot;: 2700.0,
+      &quot;bounds_xyxy&quot;: [
+        60.0,
+        80.0,
+        110.0,
+        140.0
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;two-separated-regions&quot;,
+      &quot;label&quot;: &quot;Authored triangle and small box&quot;,
+      &quot;type&quot;: &quot;MultiPolygon&quot;,
+      &quot;parts&quot;: 2,
+      &quot;holes&quot;: 0,
+      &quot;area_pixels_squared&quot;: 3775.0,
+      &quot;bounds_xyxy&quot;: [
+        130.0,
+        140.0,
+        300.0,
+        335.0
+      ]
+    }
+  ],
+  &quot;target_annotations&quot;: [
+    {
+      &quot;id&quot;: &quot;rectangle-with-hole&quot;,
+      &quot;label&quot;: &quot;Authored rectangle and excluded hole&quot;,
+      &quot;type&quot;: &quot;Polygon&quot;,
+      &quot;parts&quot;: 1,
+      &quot;holes&quot;: 1,
+      &quot;area_pixels_squared&quot;: 2700.0,
+      &quot;bounds_xyxy&quot;: [
+        100.0,
+        104.0,
+        150.0,
+        164.0
+      ]
+    },
+    {
+      &quot;id&quot;: &quot;two-separated-regions&quot;,
+      &quot;label&quot;: &quot;Authored triangle and small box&quot;,
+      &quot;type&quot;: &quot;MultiPolygon&quot;,
+      &quot;parts&quot;: 2,
+      &quot;holes&quot;: 0,
+      &quot;area_pixels_squared&quot;: 3775.0,
+      &quot;bounds_xyxy&quot;: [
+        170.0,
+        164.0,
+        340.0,
+        359.0
+      ]
+    }
+  ],
+  &quot;preview_coverage&quot;: {
+    &quot;source&quot;: {
+      &quot;total_rois&quot;: 2,
+      &quot;fully_visible_rois&quot;: 2,
+      &quot;not_fully_visible_ids&quot;: []
+    },
+    &quot;target&quot;: {
+      &quot;total_rois&quot;: 2,
+      &quot;fully_visible_rois&quot;: 2,
+      &quot;not_fully_visible_ids&quot;: []
+    }
+  },
+  &quot;limitations&quot;: [
+    &quot;Synthetic engineering decisions do not establish researcher acceptance or anatomical correctness.&quot;,
+    &quot;This local record prevents accidental stale export; it is not authentication or a tamper-proof audit.&quot;,
+    &quot;Pixel ROI JSON is a SectionCheck profile; QuPath and VALIS interoperability remain unverified.&quot;
+  ]
+}</pre></details>
+<h2>Coordinate and data record</h2><p>Source level-0 integer pixel centers → target level-0 integer pixel centers. Column xy coordinates, x right and y down. Policy basis: level0_pixels.</p><details><summary>Transform, frames, policy and data provenance (JSON)</summary><pre>{
+  &quot;source_id&quot;: &quot;synthetic-source&quot;,
+  &quot;target_id&quot;: &quot;synthetic-target&quot;,
+  &quot;coordinate_contract&quot;: {
+    &quot;vectors&quot;: &quot;column_xy1&quot;,
+    &quot;axes&quot;: &quot;x_right_y_down&quot;,
+    &quot;pixel_centers&quot;: &quot;integer&quot;
+  },
+  &quot;transform&quot;: {
+    &quot;type&quot;: &quot;affine_2d&quot;,
+    &quot;direction&quot;: &quot;source_level0_to_target_level0&quot;,
+    &quot;matrix&quot;: [
+      [
+        1,
+        0,
+        40
+      ],
+      [
+        0,
+        1,
+        24
+      ],
+      [
+        0,
+        0,
+        1
+      ]
+    ],
+    &quot;backend&quot;: &quot;authored-synthetic&quot;,
+    &quot;backend_version&quot;: null
+  },
+  &quot;source_frame&quot;: [
+    [
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      1
+    ]
+  ],
+  &quot;target_frame&quot;: [
+    [
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      1
+    ]
+  ],
+  &quot;policy&quot;: {
+    &quot;id&quot;: &quot;synthetic-demonstration-not-researcher-approved&quot;,
+    &quot;basis&quot;: &quot;level0_pixels&quot;,
+    &quot;max_abs_rotation_degrees&quot;: 15,
+    &quot;principal_scale_min&quot;: 0.9,
+    &quot;principal_scale_max&quot;: 1.1,
+    &quot;max_normalized_shear&quot;: 0.1,
+    &quot;landmark_tolerance_pixels&quot;: 0.01
+  },
+  &quot;data_provenance&quot;: {
+    &quot;domain&quot;: &quot;synthetic&quot;,
+    &quot;source&quot;: &quot;Original geometric shapes generated by examples/generate_synthetic.py; no tissue data&quot;,
+    &quot;license&quot;: &quot;Apache-2.0&quot;
+  },
+  &quot;independent_landmarks&quot;: [
+    {
+      &quot;id&quot;: &quot;rectangle-top-left&quot;,
+      &quot;error_target_level0_pixels&quot;: 0.0
+    },
+    {
+      &quot;id&quot;: &quot;triangle-right&quot;,
+      &quot;error_target_level0_pixels&quot;: 0.0
+    },
+    {
+      &quot;id&quot;: &quot;ellipse-center&quot;,
+      &quot;error_target_level0_pixels&quot;: 0.0
+    }
+  ]
+}</pre></details>
+<h2>Provenance and limits</h2><p>Input/tool/schema fingerprint: <code>296c0d151a7433d071f95c37869b20e0c9d679f8e384d239fc56f9c833e2be37</code>. This identifies the reviewed input; it is not an approval or authentication record.</p>
+<p>The Python source and manifest schema accompany this local prototype. The motivating <a href="https://github.com/MathOnco/valis/issues/246">VALIS discussion</a> asks about optimizer constraints; this report only reviews an existing transform.</p>
+<ul><li>Geometric plausibility does not establish anatomical correctness.</li><li>No researcher has accepted the task, policy, or data.</li><li>VALIS integration and researcher benefit remain unvalidated; the ROI decision/export workflow is synthetic only.</li></ul>
+</body></html>

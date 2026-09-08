@@ -1,0 +1,85 @@
+{
+  "browser": "151.0.7922.75",
+  "transport": "file URL",
+  "offline": true,
+  "errors": [],
+  "remoteRequests": [],
+  "desktop": {
+    "title": "SectionCheck — synthetic affine review",
+    "images": [
+      {
+        "complete": true,
+        "width": 512,
+        "height": 512
+      },
+      {
+        "complete": true,
+        "width": 512,
+        "height": 512
+      },
+      {
+        "complete": true,
+        "width": 512,
+        "height": 512
+      },
+      {
+        "complete": true,
+        "width": 512,
+        "height": 512
+      },
+      {
+        "complete": true,
+        "width": 512,
+        "height": 512
+      },
+      {
+        "complete": true,
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "overflow": false,
+    "hasDecisionBoundary": true,
+    "hasRoiBoundaries": true,
+    "hasReviewFingerprint": true
+  },
+  "narrow": {
+    "title": "SectionCheck — synthetic affine review",
+    "images": [
+      {
+        "complete": true,
+        "width": 512,
+        "height": 512
+      },
+      {
+        "complete": true,
+        "width": 512,
+        "height": 512
+      },
+      {
+        "complete": true,
+        "width": 512,
+        "height": 512
+      },
+      {
+        "complete": true,
+        "width": 512,
+        "height": 512
+      },
+      {
+        "complete": true,
+        "width": 512,
+        "height": 512
+      },
+      {
+        "complete": true,
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "overflow": false,
+    "hasDecisionBoundary": true,
+    "hasRoiBoundaries": true,
+    "hasReviewFingerprint": true
+  }
+}

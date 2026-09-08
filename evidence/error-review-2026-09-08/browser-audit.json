@@ -1,0 +1,16 @@
+{
+  "command": [
+    "node",
+    "tools/audit_sectioncheck_report.cjs",
+    "evidence/error-review-2026-09-08/clean-wheel/review/report.html",
+    "evidence/error-review-2026-09-08/browser"
+  ],
+  "cwd": "/workspace",
+  "environment_overrides": {
+    "PLAYWRIGHT_MODULE": "/home/USER/Github/zack-dev-cm.github.io/node_modules/playwright"
+  },
+  "started_at": "2026-09-08T06:13:54.384228+00:00",
+  "duration_seconds": 2.408,
+  "exit_code": 0,
+  "output": "browser-audit.log"
+}

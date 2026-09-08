@@ -1,0 +1,36 @@
+{
+  "scope": "synthetic_engineering",
+  "status": "verified_synthetic_reimport",
+  "review_fingerprint": "a983e88d86394fc9f847ff424278bcb89dba2aaac1fffb9d69b411ca8e17570d",
+  "annotations": [
+    {
+      "id": "rectangle-with-hole",
+      "label": "Authored rectangle and excluded hole",
+      "type": "Polygon",
+      "parts": 1,
+      "holes": 1,
+      "area_pixels_squared": 2700.0,
+      "bounds_xyxy": [
+        100.0,
+        104.0,
+        150.0,
+        164.0
+      ]
+    },
+    {
+      "id": "two-separated-regions",
+      "label": "Authored triangle and small box",
+      "type": "MultiPolygon",
+      "parts": 2,
+      "holes": 0,
+      "area_pixels_squared": 3775.0,
+      "bounds_xyxy": [
+        170.0,
+        164.0,
+        340.0,
+        359.0
+      ]
+    }
+  ],
+  "reimport": "SectionCheck profile plus GEOS validity; external viewer not validated"
+}

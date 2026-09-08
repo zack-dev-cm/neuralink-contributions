@@ -1,0 +1,127 @@
+{
+  "format": "sectioncheck-pixel-rois",
+  "schema_version": "0.1.0",
+  "domain": "synthetic",
+  "type": "FeatureCollection",
+  "coordinate_space": {
+    "image_id": "synthetic-source",
+    "frame": "level0",
+    "axes": "x_right_y_down",
+    "pixel_centers": "integer",
+    "units": "pixels"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "rectangle-with-hole",
+      "properties": {
+        "label": "Authored rectangle and excluded hole"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              60,
+              80
+            ],
+            [
+              110,
+              80
+            ],
+            [
+              110,
+              140
+            ],
+            [
+              60,
+              140
+            ],
+            [
+              60,
+              80
+            ]
+          ],
+          [
+            [
+              70,
+              90
+            ],
+            [
+              70,
+              105
+            ],
+            [
+              90,
+              105
+            ],
+            [
+              90,
+              90
+            ],
+            [
+              70,
+              90
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "two-separated-regions",
+      "properties": {
+        "label": "Authored triangle and small box"
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                220,
+                140
+              ],
+              [
+                300,
+                170
+              ],
+              [
+                250,
+                230
+              ],
+              [
+                220,
+                140
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                130,
+                310
+              ],
+              [
+                155,
+                310
+              ],
+              [
+                155,
+                335
+              ],
+              [
+                130,
+                335
+              ],
+              [
+                130,
+                310
+              ]
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

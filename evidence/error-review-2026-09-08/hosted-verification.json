@@ -1,0 +1,11 @@
+{
+  "hosted_tests": {
+    "tests": 90,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "wheel_sha256": "d267f424e28d34a5960c29578c9f21a62e527ae0408cbcd33c0b65f8df9a8053",
+  "local_and_hosted_wheels_identical": true,
+  "exercise_expected_geometry_verified": true
+}

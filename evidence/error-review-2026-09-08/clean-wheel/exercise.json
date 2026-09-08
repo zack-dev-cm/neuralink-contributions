@@ -1,0 +1,222 @@
+{
+  "scope": "automated_synthetic_protocol_exercise",
+  "researcher_approval": false,
+  "external_viewer_reimport": "NOT RUN",
+  "python": "3.12.3",
+  "package_origin": "/workspace/.venvs/sectioncheck-reviewed-wheel/lib/python3.12/site-packages/sectioncheck/__init__.py",
+  "tool_version": "0.2.1.dev0",
+  "engines": {
+    "numpy": "2.5.3",
+    "pillow": "12.3.0",
+    "jsonschema": "4.26.0",
+    "shapely": "2.1.2",
+    "geos": "3.13.1"
+  },
+  "review_fingerprint": "a983e88d86394fc9f847ff424278bcb89dba2aaac1fffb9d69b411ca8e17570d",
+  "independent_expected_geometry_verified": true,
+  "source_input_hashes_preserved": {
+    "source.png": "f156a1f2cbaf93f7429834a4230d0733bca151f2426478bb7315715e6eb9512a",
+    "target.png": "9d2272cf448ddb939a0248527c2a35925ebed1c1479d851cfc7d289303a19298",
+    "annotations.json": "fe1ec03ba9a9d5d28becd6fff1fda88b55f65037502654e7642e83af7890691b",
+    "manifest.json": "a24c2a9a9d59ca6d3d52fe5b667b188bcc27815d7f277f705802a9490a88c239"
+  },
+  "features": 2,
+  "polygon_parts": 3,
+  "holes": 1,
+  "expected_areas_pixels_squared": [
+    2700,
+    3775
+  ],
+  "commands": [
+    {
+      "name": "review",
+      "command": [
+        "/workspace/.venvs/sectioncheck-reviewed-wheel/bin/python",
+        "-I",
+        "-m",
+        "sectioncheck.cli",
+        "review",
+        "manifest.json",
+        "--annotations",
+        "annotations.json",
+        "--out",
+        "/workspace/evidence/error-review-2026-09-08/clean-wheel/review"
+      ],
+      "cwd": "/workspace/evidence/error-review-2026-09-08/clean-wheel/inputs",
+      "duration_seconds": 0.601224,
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "result_status": "decision_required"
+    },
+    {
+      "name": "approve",
+      "command": [
+        "/workspace/.venvs/sectioncheck-reviewed-wheel/bin/python",
+        "-I",
+        "-m",
+        "sectioncheck.cli",
+        "decide",
+        "manifest.json",
+        "--annotations",
+        "annotations.json",
+        "--review-fingerprint",
+        "a983e88d86394fc9f847ff424278bcb89dba2aaac1fffb9d69b411ca8e17570d",
+        "--reviewer-alias",
+        "automated-synthetic-exercise",
+        "--reason",
+        "Automated protocol exercise using original shapes; no person or researcher approved these data.",
+        "--decision",
+        "approve",
+        "--acknowledge",
+        "physical_calibration",
+        "--acknowledge",
+        "source_footprint",
+        "--out",
+        "/workspace/evidence/error-review-2026-09-08/clean-wheel/decision.json"
+      ],
+      "cwd": "/workspace/evidence/error-review-2026-09-08/clean-wheel/inputs",
+      "duration_seconds": 0.397989,
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "result_status": "approve"
+    },
+    {
+      "name": "export",
+      "command": [
+        "/workspace/.venvs/sectioncheck-reviewed-wheel/bin/python",
+        "-I",
+        "-m",
+        "sectioncheck.cli",
+        "export",
+        "manifest.json",
+        "--annotations",
+        "annotations.json",
+        "--decision-file",
+        "/workspace/evidence/error-review-2026-09-08/clean-wheel/decision.json",
+        "--out",
+        "/workspace/evidence/error-review-2026-09-08/clean-wheel/export"
+      ],
+      "cwd": "/workspace/evidence/error-review-2026-09-08/clean-wheel/inputs",
+      "duration_seconds": 0.375188,
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "result_status": "exported_synthetic_annotations"
+    },
+    {
+      "name": "verify",
+      "command": [
+        "/workspace/.venvs/sectioncheck-reviewed-wheel/bin/python",
+        "-I",
+        "-m",
+        "sectioncheck.cli",
+        "verify-export",
+        "manifest.json",
+        "--annotations",
+        "annotations.json",
+        "--decision-file",
+        "/workspace/evidence/error-review-2026-09-08/clean-wheel/decision.json",
+        "--export-dir",
+        "/workspace/evidence/error-review-2026-09-08/clean-wheel/export"
+      ],
+      "cwd": "/workspace/evidence/error-review-2026-09-08/clean-wheel/inputs",
+      "duration_seconds": 0.377006,
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "result_status": "verified_synthetic_reimport"
+    },
+    {
+      "name": "reject",
+      "command": [
+        "/workspace/.venvs/sectioncheck-reviewed-wheel/bin/python",
+        "-I",
+        "-m",
+        "sectioncheck.cli",
+        "decide",
+        "manifest.json",
+        "--annotations",
+        "annotations.json",
+        "--review-fingerprint",
+        "a983e88d86394fc9f847ff424278bcb89dba2aaac1fffb9d69b411ca8e17570d",
+        "--reviewer-alias",
+        "automated-synthetic-exercise",
+        "--reason",
+        "Automated protocol exercise using original shapes; no person or researcher approved these data.",
+        "--decision",
+        "reject",
+        "--out",
+        "/workspace/evidence/error-review-2026-09-08/clean-wheel/rejection.json"
+      ],
+      "cwd": "/workspace/evidence/error-review-2026-09-08/clean-wheel/inputs",
+      "duration_seconds": 0.322405,
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "result_status": "reject"
+    },
+    {
+      "name": "rejected-export",
+      "command": [
+        "/workspace/.venvs/sectioncheck-reviewed-wheel/bin/python",
+        "-I",
+        "-m",
+        "sectioncheck.cli",
+        "export",
+        "manifest.json",
+        "--annotations",
+        "annotations.json",
+        "--decision-file",
+        "/workspace/evidence/error-review-2026-09-08/clean-wheel/rejection.json",
+        "--out",
+        "/workspace/evidence/error-review-2026-09-08/clean-wheel/rejected-output"
+      ],
+      "cwd": "/workspace/evidence/error-review-2026-09-08/clean-wheel/inputs",
+      "duration_seconds": 0.287662,
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "result_status": "hard_invalid"
+    },
+    {
+      "name": "stale-export",
+      "command": [
+        "/workspace/.venvs/sectioncheck-reviewed-wheel/bin/python",
+        "-I",
+        "-m",
+        "sectioncheck.cli",
+        "export",
+        "changed-manifest.json",
+        "--annotations",
+        "annotations.json",
+        "--decision-file",
+        "/workspace/evidence/error-review-2026-09-08/clean-wheel/decision.json",
+        "--out",
+        "/workspace/evidence/error-review-2026-09-08/clean-wheel/stale-output"
+      ],
+      "cwd": "/workspace/evidence/error-review-2026-09-08/clean-wheel/inputs",
+      "duration_seconds": 0.269538,
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "result_status": "hard_invalid"
+    },
+    {
+      "name": "tampered-reimport",
+      "command": [
+        "/workspace/.venvs/sectioncheck-reviewed-wheel/bin/python",
+        "-I",
+        "-m",
+        "sectioncheck.cli",
+        "verify-export",
+        "manifest.json",
+        "--annotations",
+        "annotations.json",
+        "--decision-file",
+        "/workspace/evidence/error-review-2026-09-08/clean-wheel/decision.json",
+        "--export-dir",
+        "/workspace/evidence/error-review-2026-09-08/clean-wheel/tampered-export"
+      ],
+      "cwd": "/workspace/evidence/error-review-2026-09-08/clean-wheel/inputs",
+      "duration_seconds": 0.277001,
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "result_status": "hard_invalid"
+    }
+  ]
+}

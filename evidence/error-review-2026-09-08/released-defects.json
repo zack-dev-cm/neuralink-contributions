@@ -1,0 +1,93 @@
+[
+  {
+    "case": "image_fifo",
+    "timed_out_after_seconds": 3
+  },
+  {
+    "case": "huge_calibration",
+    "exit_code": 1,
+    "traceback": true,
+    "stdout": "",
+    "stderr": "^^^^\n  File \"/workspace/.venvs/sectioncheck-public-wheel/lib/python3.12/site-packages/sectioncheck/cli.py\", line 116, in run_workflow\n    review = prepare_review(args.manifest, args.annotations)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/.venvs/sectioncheck-public-wheel/lib/python3.12/site-packages/sectioncheck/workflow.py\", line 64, in prepare_review\n    checks, images = check(manifest, manifest_path.resolve().parent)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/.venvs/sectioncheck-public-wheel/lib/python3.12/site-packages/sectioncheck/checks.py\", line 150, in check\n    physical = physical_linear(manifest)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/.venvs/sectioncheck-public-wheel/lib/python3.12/site-packages/sectioncheck/geometry.py\", line 97, in physical_linear\n    np.diag(target) @ linear @ np.diag(1 / np.asarray(source, dtype=float))\n                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nOverflowError: int too large to convert to float\n"
+  },
+  {
+    "case": "invisible_rois",
+    "exit_code": 0,
+    "traceback": false,
+    "stdout": ".0,\n        2335.0\n      ]\n    }\n  ],\n  \"target_annotations\": [\n    {\n      \"id\": \"rectangle-with-hole\",\n      \"label\": \"Authored rectangle and excluded hole\",\n      \"type\": \"Polygon\",\n      \"parts\": 1,\n      \"holes\": 1,\n      \"area_pixels_squared\": 2700.0,\n      \"bounds_xyxy\": [\n        2060.0,\n        2080.0,\n        2110.0,\n        2140.0\n      ]\n    },\n    {\n      \"id\": \"two-separated-regions\",\n      \"label\": \"Authored triangle and small box\",\n      \"type\": \"MultiPolygon\",\n      \"parts\": 2,\n      \"holes\": 0,\n      \"area_pixels_squared\": 3775.0,\n      \"bounds_xyxy\": [\n        2130.0,\n        2140.0,\n        2300.0,\n        2335.0\n      ]\n    }\n  ],\n  \"limitations\": [\n    \"Synthetic engineering decisions do not establish researcher acceptance or anatomical correctness.\",\n    \"This local record prevents accidental stale export; it is not authentication or a tamper-proof audit.\",\n    \"Pixel ROI JSON is a SectionCheck profile; QuPath and VALIS interoperability remain unverified.\"\n  ]\n}\n",
+    "stderr": "",
+    "checks": [
+      {
+        "code": "rotation",
+        "status": "pass",
+        "message": "Absolute polar rotation: 0 degrees in level0_pixels."
+      },
+      {
+        "code": "principal_scales",
+        "status": "pass",
+        "message": "Principal scales: [1.0, 1.0] in level0_pixels."
+      },
+      {
+        "code": "shear",
+        "status": "pass",
+        "message": "Normalized polar off-diagonal stretch: 0."
+      },
+      {
+        "code": "source_footprint",
+        "status": "pass",
+        "message": "Source support is within the target preview."
+      },
+      {
+        "code": "independent_landmarks",
+        "status": "not_evaluated",
+        "message": "No independent landmarks were supplied."
+      }
+    ],
+    "required_acknowledgments": [
+      "independent_landmarks"
+    ]
+  },
+  {
+    "case": "near_projective",
+    "exit_code": 0,
+    "traceback": false,
+    "stdout": "        300.0,\n        335.0\n      ]\n    }\n  ],\n  \"target_annotations\": [\n    {\n      \"id\": \"rectangle-with-hole\",\n      \"label\": \"Authored rectangle and excluded hole\",\n      \"type\": \"Polygon\",\n      \"parts\": 1,\n      \"holes\": 1,\n      \"area_pixels_squared\": 2700.0,\n      \"bounds_xyxy\": [\n        60.0,\n        80.0,\n        110.0,\n        140.0\n      ]\n    },\n    {\n      \"id\": \"two-separated-regions\",\n      \"label\": \"Authored triangle and small box\",\n      \"type\": \"MultiPolygon\",\n      \"parts\": 2,\n      \"holes\": 0,\n      \"area_pixels_squared\": 3775.0,\n      \"bounds_xyxy\": [\n        130.0,\n        140.0,\n        300.0,\n        335.0\n      ]\n    }\n  ],\n  \"limitations\": [\n    \"Synthetic engineering decisions do not establish researcher acceptance or anatomical correctness.\",\n    \"This local record prevents accidental stale export; it is not authentication or a tamper-proof audit.\",\n    \"Pixel ROI JSON is a SectionCheck profile; QuPath and VALIS interoperability remain unverified.\"\n  ]\n}\n",
+    "stderr": "",
+    "checks": [
+      {
+        "code": "physical_calibration",
+        "status": "not_evaluated",
+        "message": "Physical checks need calibration for both images."
+      },
+      {
+        "code": "rotation",
+        "status": "pass",
+        "message": "Absolute polar rotation: 0 degrees in level0_pixels."
+      },
+      {
+        "code": "principal_scales",
+        "status": "pass",
+        "message": "Principal scales: [1.0, 1.0] in level0_pixels."
+      },
+      {
+        "code": "shear",
+        "status": "pass",
+        "message": "Normalized polar off-diagonal stretch: 0."
+      },
+      {
+        "code": "source_footprint",
+        "status": "pass",
+        "message": "Source support is within the target preview."
+      },
+      {
+        "code": "independent_landmarks",
+        "status": "warning",
+        "message": "3 supplied independent landmarks; maximum error 46.6476 target level-0 pixels. Independence is declared by the fixture author."
+      }
+    ],
+    "required_acknowledgments": [
+      "independent_landmarks",
+      "physical_calibration"
+    ]
+  }
+]

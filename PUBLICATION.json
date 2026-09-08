@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-09-08T05:49:10.275627+00:00",
+  "recorded_at": "2026-09-08T06:21:42.818088+00:00",
   "repositories": {
     "datarepo": "https://github.com/zack-dev-cm/datarepo",
     "sectioncheck": "https://github.com/zack-dev-cm/sectioncheck",
@@ -73,12 +73,12 @@
     "formal_reviewer_assignment": "API rejected with HTTP 404; consolidated comment request posted instead"
   },
   "sectioncheck": {
-    "version": "0.2.0.dev0",
-    "source_commit": "3a6e4edf081593e94d722d5d4476b8d46a2f9cfa",
-    "release": "https://github.com/zack-dev-cm/sectioncheck/releases/tag/v0.2.0.dev0",
+    "version": "0.2.1.dev0",
+    "source_commit": "c11ee36b86b62f5d73ace0d5029900db1c24cb08",
+    "release": "https://github.com/zack-dev-cm/sectioncheck/releases/tag/v0.2.1.dev0",
     "demo": "https://zack-dev-cm.github.io/sectioncheck/",
-    "ci": "https://github.com/zack-dev-cm/sectioncheck/actions/runs/34190288276",
-    "tests_passed": 81,
+    "ci": "https://github.com/zack-dev-cm/sectioncheck/actions/runs/34193783979",
+    "tests_passed": 90,
     "wheel_download_verified": true,
     "demo_matches_source": true,
     "scope": "authored synthetic data only"
@@ -90,5 +90,24 @@
     "external_viewer_reimport": "NOT RUN",
     "aac_user_trial": "NOT RUN"
   },
-  "source_pack_files_unchanged": 54
+  "source_pack_files_unchanged": 54,
+  "sectioncheck_previous": {
+    "version": "0.2.0.dev0",
+    "source_commit": "3a6e4edf081593e94d722d5d4476b8d46a2f9cfa",
+    "release": "https://github.com/zack-dev-cm/sectioncheck/releases/tag/v0.2.0.dev0",
+    "demo": "https://zack-dev-cm.github.io/sectioncheck/",
+    "ci": "https://github.com/zack-dev-cm/sectioncheck/actions/runs/34190288276",
+    "tests_passed": 81,
+    "wheel_download_verified": true,
+    "demo_matches_source": true,
+    "scope": "authored synthetic data only"
+  },
+  "error_review": {
+    "confirmed_errors": 4,
+    "fixed": 4,
+    "new_regression_cases": 9,
+    "report": "review/ERROR_REVIEW_2026-09-08.md",
+    "datarepo_pypi_quickstart": "passed using installed 0.1.0 package",
+    "old_sectioncheck_decisions": "stale; a new review and decision are required"
+  }
 }

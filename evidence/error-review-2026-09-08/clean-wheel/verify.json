@@ -1,0 +1,20 @@
+{
+  "command": [
+    "/workspace/.venvs/sectioncheck-reviewed-wheel/bin/python",
+    "-I",
+    "-m",
+    "sectioncheck.cli",
+    "verify-export",
+    "manifest.json",
+    "--annotations",
+    "annotations.json",
+    "--decision-file",
+    "/workspace/evidence/error-review-2026-09-08/clean-wheel/decision.json",
+    "--export-dir",
+    "/workspace/evidence/error-review-2026-09-08/clean-wheel/export"
+  ],
+  "cwd": "/workspace/evidence/error-review-2026-09-08/clean-wheel/inputs",
+  "duration_seconds": 0.377006,
+  "exit_code": 0,
+  "expected_exit_code": 0
+}
