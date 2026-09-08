@@ -5,10 +5,6 @@ synthetic registration-review prototype. Developed with AI assistance. This
 independent project is not affiliated with or endorsed by Neuralink, AsTeRICS,
 VALIS or QuPath.
 
-[![Explore the datarepo query explanation in 3D](showcase/media/datarepo-preview.gif)](https://zack-dev-cm.github.io/docs/neural-engineering/studio.html?project=datarepo)
-
-[Explore datarepo in 3D](https://zack-dev-cm.github.io/docs/neural-engineering/studio.html?project=datarepo) · [SectionCheck in 3D](https://zack-dev-cm.github.io/docs/neural-engineering/studio.html?project=sectioncheck) · [Films, GIFs, models and reproduction](showcase/README.md). The animated examples follow synthetic source fixtures; model depth and part dimensions are illustrative.
-
 | Contribution | Public work | Verified evidence |
 | --- | --- | --- |
 | D1: ClickHouse null filters | [PR #57](https://github.com/neuralinkcorp/datarepo/pull/57) · [patch](review/D1.patch) | [135 tests pass with an actual local ClickHouse, zero skips](evidence/D1-04/fixed-tests.log); baseline has 20 expected failures |
