@@ -1,0 +1,312 @@
+Disposable ClickHouse HTTP: 127.0.0.1:43845
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.6.0 -- /workspace/datarepo/../.venvs/datarepo/bin/python
+cachedir: .pytest_cache
+rootdir: /workspace/datarepo
+configfile: pyproject.toml
+plugins: cov-7.1.0
+collecting ... collected 135 items
+
+test/export/test_roapi.py::TestRoapiExport::test_roapi_export_parquet_partition_columns PASSED
+test/export/test_roapi.py::TestRoapiExport::test_roapi_export_clickhouse_table_returns_none PASSED
+test/export/test_web.py::TestWebExport::test_export_table_column_name_field PASSED
+test/export/test_web.py::TestWebExport::test_export_table_derives_schema_from_attribute PASSED
+test/export/test_web.py::TestWebExport::test_export_table_delta_without_docs_filters PASSED
+test/export/test_web.py::TestWebExport::test_export_table_uses_partition_columns_when_set PASSED
+test/roapi/test_roapi.py::TestRoapi::test_export_roapi database_new_table: Only parquet and deltalake tables are supported for roapi export.
+PASSED
+test/tables/test_clickhouse_filters.py::test_null_predicates_ignore_placeholder[None-is null] FAILED
+test/tables/test_clickhouse_filters.py::test_null_predicates_ignore_placeholder[None-is not null] FAILED
+test/tables/test_clickhouse_filters.py::test_null_predicates_ignore_placeholder[unused'placeholder-is null] FAILED
+test/tables/test_clickhouse_filters.py::test_null_predicates_ignore_placeholder[unused'placeholder-is not null] FAILED
+test/tables/test_clickhouse_filters.py::test_null_predicates_ignore_placeholder[placeholder2-is null] FAILED
+test/tables/test_clickhouse_filters.py::test_null_predicates_ignore_placeholder[placeholder2-is not null] FAILED
+test/tables/test_clickhouse_filters.py::test_null_predicates_ignore_placeholder[placeholder3-is null] FAILED
+test/tables/test_clickhouse_filters.py::test_null_predicates_ignore_placeholder[placeholder3-is not null] FAILED
+test/tables/test_clickhouse_filters.py::test_null_predicates_do_not_format_value[is null] FAILED
+test/tables/test_clickhouse_filters.py::test_null_predicates_do_not_format_value[is not null] FAILED
+test/tables/test_clickhouse_filters.py::test_null_predicates_preserve_and_or_groups[filters0-(`x` IS NULL AND `id` = 1)] FAILED
+test/tables/test_clickhouse_filters.py::test_null_predicates_preserve_and_or_groups[filters1-(`x` IS NULL) OR (`id` = 2)] FAILED
+test/tables/test_clickhouse_filters.py::test_null_predicates_preserve_and_or_groups[filters2-(`x` IS NOT NULL AND `id` > 2) OR (`x` IS NULL AND `id` = 1)] FAILED
+test/tables/test_clickhouse_filters.py::test_unknown_operator_raises_before_client_creation[filters0] FAILED
+test/tables/test_clickhouse_filters.py::test_unknown_operator_raises_before_client_creation[filters1] FAILED
+test/tables/test_clickhouse_filters.py::test_unknown_operator_raises_before_client_creation[filters2] FAILED
+test/tables/test_clickhouse_filters.py::test_unknown_operator_raises_before_client_creation[filters3] FAILED
+test/tables/test_clickhouse_filters.py::test_existing_empty_filter_behavior[None] PASSED
+test/tables/test_clickhouse_filters.py::test_existing_empty_filter_behavior[filters1] PASSED
+test/tables/test_clickhouse_filters.py::test_existing_empty_filter_behavior[filters2] PASSED
+test/tables/test_clickhouse_filters.py::test_existing_empty_filter_behavior[filters3] PASSED
+test/tables/test_clickhouse_filters.py::test_empty_group_alongside_nonempty_group_is_ignored PASSED
+test/tables/test_clickhouse_filters.py::test_recognized_operator_behavior_is_unchanged[=-None-`x` = NULL] PASSED
+test/tables/test_clickhouse_filters.py::test_recognized_operator_behavior_is_unchanged[!=-2-`x` != 2] PASSED
+test/tables/test_clickhouse_filters.py::test_recognized_operator_behavior_is_unchanged[<-2-`x` < 2] PASSED
+test/tables/test_clickhouse_filters.py::test_recognized_operator_behavior_is_unchanged[<=-2-`x` <= 2] PASSED
+test/tables/test_clickhouse_filters.py::test_recognized_operator_behavior_is_unchanged[>-2-`x` > 2] PASSED
+test/tables/test_clickhouse_filters.py::test_recognized_operator_behavior_is_unchanged[>=-2-`x` >= 2] PASSED
+test/tables/test_clickhouse_filters.py::test_recognized_operator_behavior_is_unchanged[in-value6-`x` IN (1, 2)] PASSED
+test/tables/test_clickhouse_filters.py::test_recognized_operator_behavior_is_unchanged[not in-value7-`x` NOT IN (1, 2)] PASSED
+test/tables/test_clickhouse_filters.py::test_recognized_operator_behavior_is_unchanged[in-value8-`x` IN ()] PASSED
+test/tables/test_clickhouse_filters.py::test_recognized_operator_behavior_is_unchanged[not in-value9-`x` NOT IN ()] PASSED
+test/tables/test_clickhouse_filters.py::test_recognized_operator_behavior_is_unchanged[contains-%cat%-`x` LIKE '%cat%'] PASSED
+test/tables/test_clickhouse_filters.py::test_recognized_operator_behavior_is_unchanged[includes-%cat%-`x` LIKE '%cat%'] PASSED
+test/tables/test_clickhouse_filters.py::test_recognized_operator_behavior_is_unchanged[includes any-%cat%-`x` LIKE '%cat%'] PASSED
+test/tables/test_clickhouse_filters.py::test_recognized_operator_behavior_is_unchanged[includes all-%cat%-`x` LIKE '%cat%'] PASSED
+test/tables/test_clickhouse_filters.py::test_existing_invalid_column_behavior_is_unchanged PASSED
+test/tables/test_clickhouse_filters_integration.py::test_local_null_filter_rows[is-null] ClickHouse version: 26.3.32.14
+SELECT `id` FROM `default`.`datarepo_null_filters_002dbbc199564a5f82a344c44fdeebd5` : [1, 2, 3, 4]
+FAILED
+test/tables/test_clickhouse_filters_integration.py::test_local_null_filter_rows[is-not-null] SELECT `id` FROM `default`.`datarepo_null_filters_002dbbc199564a5f82a344c44fdeebd5` : [1, 2, 3, 4]
+FAILED
+test/tables/test_clickhouse_filters_integration.py::test_local_null_filter_rows[null-and-id] SELECT `id` FROM `default`.`datarepo_null_filters_002dbbc199564a5f82a344c44fdeebd5` WHERE (`id` = 1): [1]
+PASSED
+test/tables/test_clickhouse_filters_integration.py::test_local_null_filter_rows[null-or-id] SELECT `id` FROM `default`.`datarepo_null_filters_002dbbc199564a5f82a344c44fdeebd5` WHERE (`id` = 2): [2]
+FAILED
+test/tables/test_clickhouse_filters_integration.py::test_local_null_filter_rows[no-filters] SELECT `id` FROM `default`.`datarepo_null_filters_002dbbc199564a5f82a344c44fdeebd5` : [1, 2, 3, 4]
+PASSED
+test/tables/test_clickhouse_table.py::TestMakeClickHouseConfig::test_defaults_match_http_port PASSED
+test/tables/test_clickhouse_table.py::TestClickHouseTable::test_get_schema PASSED
+test/tables/test_clickhouse_table.py::TestClickHouseTable::test_build_query_no_filters PASSED
+test/tables/test_clickhouse_table.py::TestClickHouseTable::test_build_query_falls_back_to_self_name PASSED
+test/tables/test_clickhouse_table.py::TestClickHouseTable::test_build_query_with_columns PASSED
+test/tables/test_clickhouse_table.py::TestClickHouseTable::test_build_query_with_filters PASSED
+test/tables/test_clickhouse_table.py::TestClickHouseTable::test_build_query_with_multiple_filters PASSED
+test/tables/test_clickhouse_table.py::TestClickHouseTable::test_filter_operators[=-1-`implant_id` = 1] PASSED
+test/tables/test_clickhouse_table.py::TestClickHouseTable::test_filter_operators[!=-1-`implant_id` != 1] PASSED
+test/tables/test_clickhouse_table.py::TestClickHouseTable::test_filter_operators[>-1-`implant_id` > 1] PASSED
+test/tables/test_clickhouse_table.py::TestClickHouseTable::test_filter_operators[<-1-`implant_id` < 1] PASSED
+test/tables/test_clickhouse_table.py::TestClickHouseTable::test_filter_operators[>=-1-`implant_id` >= 1] PASSED
+test/tables/test_clickhouse_table.py::TestClickHouseTable::test_filter_operators[<=-1-`implant_id` <= 1] PASSED
+test/tables/test_clickhouse_table.py::TestClickHouseTable::test_filter_operators[in-value6-`implant_id` IN (1, 2, 3)] PASSED
+test/tables/test_clickhouse_table.py::TestClickHouseTable::test_filter_operators[not in-value7-`implant_id` NOT IN (1, 2, 3)] PASSED
+test/tables/test_clickhouse_table.py::TestClickHouseTable::test_filter_operators[contains-%test%-`str_value` LIKE '%test%'] PASSED
+test/tables/test_clickhouse_table.py::TestClickHouseTable::test_call_with_no_filters PASSED
+test/tables/test_clickhouse_table.py::TestClickHouseTable::test_call_with_filters_and_columns PASSED
+test/tables/test_clickhouse_table.py::TestClickHouseTable::test_call_handles_empty_results PASSED
+test/tables/test_clickhouse_table.py::TestClickHouseTable::test_call_uses_override_config PASSED
+test/tables/test_deltalake_table.py::TestDeltalakeTable::test_fetch_dfs_by_paths PASSED
+test/tables/test_deltalake_table.py::TestDeltalakeTable::test_fetch_dfs_by_paths_reordered PASSED
+test/tables/test_deltalake_table.py::TestDeltalakeTable::test_fetch_dfs_by_paths_different_schemas PASSED
+test/tables/test_deltalake_table.py::TestDeltalakeTable::test_fetch_df_by_partition PASSED
+test/tables/test_deltalake_table.py::TestDeltalakeTable::test_fetch_df_by_partition_empty_files PASSED
+test/tables/test_deltalake_table.py::TestDeltalakeTable::test_call_loads_correct_data[data0-args0-expected0] PASSED
+test/tables/test_deltalake_table.py::TestDeltalakeTable::test_call_loads_correct_data[data1-args1-expected1] PASSED
+test/tables/test_deltalake_table.py::TestDeltalakeTable::test_call_loads_correct_data[data2-args2-expected2] PASSED
+test/tables/test_deltalake_table.py::TestDeltalakeTable::test_call_loads_correct_data[data3-args3-expected3] PASSED
+test/tables/test_deltalake_table.py::TestDeltalakeTable::test_call_loads_correct_data[data4-args4-expected4] PASSED
+test/tables/test_parquet_table.py::TestParquetTable::test_read[None-expected0] PASSED
+test/tables/test_parquet_table.py::TestParquetTable::test_read[filters1-expected1] PASSED
+test/tables/test_parquet_table.py::TestParquetTable::test_read[filters2-expected2] PASSED
+test/tables/test_parquet_table.py::TestParquetTable::test_read_partitioned[None-expected0] PASSED
+test/tables/test_parquet_table.py::TestParquetTable::test_read_partitioned[filters1-expected1] PASSED
+test/tables/test_parquet_table.py::TestParquetTable::test_read_partitioned[filters2-expected2] PASSED
+test/tables/test_parquet_table.py::TestParquetTable::test_read_partitioned[filters3-expected3] PASSED
+test/tables/test_parquet_table.py::TestParquetTable::test_read_partitioned[filters4-expected4] PASSED
+test/tables/test_parquet_table.py::TestParquetTable::test_read_partitioned[filters5-expected5] PASSED
+test/tables/test_parquet_table.py::TestParquetTable::test_read_partitioned[filters6-expected6] PASSED
+test/tables/test_parquet_table.py::TestParquetTable::test_read_partitioned[filters7-expected7] PASSED
+test/tables/test_parquet_table.py::TestParquetTable::test_read_partitioned[filters8-expected8] PASSED
+test/tables/test_parquet_table.py::TestParquetTable::test_read_partitioned[filters9-expected9] PASSED
+test/tables/test_parquet_table.py::TestParquetTable::test_read_partitioned[filters10-expected10] PASSED
+test/tables/test_parquet_table.py::TestParquetTable::test_read_partitioned[filters11-expected11] PASSED
+test/tables/test_parquet_table.py::TestParquetTable::test_build_uri_from_filters[filters0-expected0] PASSED
+test/tables/test_parquet_table.py::TestParquetTable::test_build_uri_from_filters[filters1-expected1] PASSED
+test/tables/test_parquet_table.py::TestParquetTable::test_build_uri_from_filters[filters2-expected2] PASSED
+test/tables/test_parquet_table.py::TestParquetTable::test_build_uri_from_filters[filters3-expected3] PASSED
+test/tables/test_parquet_table.py::TestParquetTable::test_build_uri_from_filters[filters4-expected4] PASSED
+test/tables/test_parquet_table.py::TestParquetTable::test_build_uri_from_filters[filters5-expected5] PASSED
+test/tables/test_table.py::TestTable::test_exactly_one_equality_filter PASSED
+test/tables/test_table.py::TestTable::test_exactly_one_equality_filter_none PASSED
+test/tables/test_table.py::TestTable::test_exactly_one_equality_filter_non_equality PASSED
+test/tables/test_table.py::TestTable::test_exactly_one_equality_filter_multiple PASSED
+test/tables/test_table.py::TestTable::test_exactly_one_equality_filter_no_filters PASSED
+test/tables/test_util.py::TestUtil::test_filter_to_expr[schema0-f0-(int_col = 123)] PASSED
+test/tables/test_util.py::TestUtil::test_filter_to_expr[schema1-f1-(int_col = 123)] PASSED
+test/tables/test_util.py::TestUtil::test_filter_to_expr[schema2-f2-(int_col in (1))] PASSED
+test/tables/test_util.py::TestUtil::test_filter_to_expr[schema3-f3-(int_col in (1, 2))] PASSED
+test/tables/test_util.py::TestUtil::test_filter_to_expr[schema4-f4-(int_col not in (1, 2))] PASSED
+test/tables/test_util.py::TestUtil::test_filter_to_expr[schema5-f5-(str_col = 'x')] PASSED
+test/tables/test_util.py::TestUtil::test_filter_to_expr[schema6-f6-(str_col in ('val1'))] PASSED
+test/tables/test_util.py::TestUtil::test_filter_to_expr[schema7-f7-(str_col in ('val1', 'val2'))] PASSED
+test/tables/test_util.py::TestUtil::test_filter_to_expr[schema8-f8-(str_col like '%x''%')] PASSED
+test/tables/test_util.py::TestUtil::test_filter_to_expr[schema9-f9-(array_contains(list_col, 1))] PASSED
+test/tables/test_util.py::TestUtil::test_filter_to_expr[schema10-f10-(array_contains(list_str_col, 'x'))] PASSED
+test/tables/test_util.py::TestUtil::test_filter_to_expr[schema11-f11-(array_contains(list_col, 1) and array_contains(list_col, 2) and array_contains(list_col, 3))] PASSED
+test/tables/test_util.py::TestUtil::test_filter_to_expr[schema12-f12-(array_contains(list_col, 1) or array_contains(list_col, 2) or array_contains(list_col, 3))] PASSED
+test/tables/test_util.py::TestUtil::test_filter_to_expr_raises PASSED
+test/tables/test_util.py::TestUtil::test_filters_to_sql_predicate[schema0-filters0-((str_col = 'x'))] PASSED
+test/tables/test_util.py::TestUtil::test_filters_to_sql_predicate[schema1-filters1-((str_col = 'x') and (int_col = 123))] PASSED
+test/tables/test_util.py::TestUtil::test_filters_to_sql_predicate[schema2-filters2-((str_col = 'x')) or ((int_col = 123) and (int_col < 456))] PASSED
+test/tables/test_util.py::TestUtil::test_normalize_filters[None-expected0] PASSED
+test/tables/test_util.py::TestUtil::test_normalize_filters[filters1-expected1] PASSED
+test/tables/test_util.py::TestUtil::test_normalize_filters[filters2-expected2] PASSED
+test/tables/test_util.py::TestUtil::test_normalize_filters[filters3-expected3] PASSED
+test/tables/test_util.py::TestUtil::test_normalize_filters[filters4-expected4] PASSED
+test/tables/test_util.py::TestUtil::test_normalize_filters[filters5-expected5] PASSED
+test/tables/test_util.py::TestUtil::test_get_storage_options_skips_missing_profile PASSED
+test/test_core.py::TestCore::test_get_dbs PASSED
+test/test_core.py::TestCore::test_get_deprecated_table PASSED
+test/test_core.py::TestCore::test_get_table PASSED
+test/test_core.py::TestCore::test_get_tables PASSED
+test/test_core.py::TestCore::test_unregistered_db PASSED
+test/test_core.py::TestCore::test_unregistered_table PASSED
+
+=================================== FAILURES ===================================
+____________ test_null_predicates_ignore_placeholder[None-is null] _____________
+test/tables/test_clickhouse_filters.py:31: in test_null_predicates_ignore_placeholder
+    assert where_clause(query) == f"(`x` {operator.upper()})"
+E   AssertionError: assert '' == '(`x` IS NULL)'
+E     
+E     - (`x` IS NULL)
+__________ test_null_predicates_ignore_placeholder[None-is not null] ___________
+test/tables/test_clickhouse_filters.py:31: in test_null_predicates_ignore_placeholder
+    assert where_clause(query) == f"(`x` {operator.upper()})"
+E   AssertionError: assert '' == '(`x` IS NOT NULL)'
+E     
+E     - (`x` IS NOT NULL)
+_____ test_null_predicates_ignore_placeholder[unused'placeholder-is null] ______
+test/tables/test_clickhouse_filters.py:31: in test_null_predicates_ignore_placeholder
+    assert where_clause(query) == f"(`x` {operator.upper()})"
+E   AssertionError: assert '' == '(`x` IS NULL)'
+E     
+E     - (`x` IS NULL)
+___ test_null_predicates_ignore_placeholder[unused'placeholder-is not null] ____
+test/tables/test_clickhouse_filters.py:31: in test_null_predicates_ignore_placeholder
+    assert where_clause(query) == f"(`x` {operator.upper()})"
+E   AssertionError: assert '' == '(`x` IS NOT NULL)'
+E     
+E     - (`x` IS NOT NULL)
+________ test_null_predicates_ignore_placeholder[placeholder2-is null] _________
+test/tables/test_clickhouse_filters.py:31: in test_null_predicates_ignore_placeholder
+    assert where_clause(query) == f"(`x` {operator.upper()})"
+E   AssertionError: assert '' == '(`x` IS NULL)'
+E     
+E     - (`x` IS NULL)
+______ test_null_predicates_ignore_placeholder[placeholder2-is not null] _______
+test/tables/test_clickhouse_filters.py:31: in test_null_predicates_ignore_placeholder
+    assert where_clause(query) == f"(`x` {operator.upper()})"
+E   AssertionError: assert '' == '(`x` IS NOT NULL)'
+E     
+E     - (`x` IS NOT NULL)
+________ test_null_predicates_ignore_placeholder[placeholder3-is null] _________
+test/tables/test_clickhouse_filters.py:31: in test_null_predicates_ignore_placeholder
+    assert where_clause(query) == f"(`x` {operator.upper()})"
+E   AssertionError: assert '' == '(`x` IS NULL)'
+E     
+E     - (`x` IS NULL)
+______ test_null_predicates_ignore_placeholder[placeholder3-is not null] _______
+test/tables/test_clickhouse_filters.py:31: in test_null_predicates_ignore_placeholder
+    assert where_clause(query) == f"(`x` {operator.upper()})"
+E   AssertionError: assert '' == '(`x` IS NOT NULL)'
+E     
+E     - (`x` IS NOT NULL)
+______________ test_null_predicates_do_not_format_value[is null] _______________
+test/tables/test_clickhouse_filters.py:46: in test_null_predicates_do_not_format_value
+    assert where_clause(query) == f"(`x` {operator.upper()})"
+E   AssertionError: assert '' == '(`x` IS NULL)'
+E     
+E     - (`x` IS NULL)
+____________ test_null_predicates_do_not_format_value[is not null] _____________
+test/tables/test_clickhouse_filters.py:46: in test_null_predicates_do_not_format_value
+    assert where_clause(query) == f"(`x` {operator.upper()})"
+E   AssertionError: assert '' == '(`x` IS NOT NULL)'
+E     
+E     - (`x` IS NOT NULL)
+_ test_null_predicates_preserve_and_or_groups[filters0-(`x` IS NULL AND `id` = 1)] _
+test/tables/test_clickhouse_filters.py:70: in test_null_predicates_preserve_and_or_groups
+    assert where_clause(table._build_query(filters)) == expected
+E   AssertionError: assert '(`id` = 1)' == '(`x` IS NULL AND `id` = 1)'
+E     
+E     - (`x` IS NULL AND `id` = 1)
+E     + (`id` = 1)
+_ test_null_predicates_preserve_and_or_groups[filters1-(`x` IS NULL) OR (`id` = 2)] _
+test/tables/test_clickhouse_filters.py:70: in test_null_predicates_preserve_and_or_groups
+    assert where_clause(table._build_query(filters)) == expected
+E   AssertionError: assert '(`id` = 2)' == '(`x` IS NULL) OR (`id` = 2)'
+E     
+E     - (`x` IS NULL) OR (`id` = 2)
+E     + (`id` = 2)
+_ test_null_predicates_preserve_and_or_groups[filters2-(`x` IS NOT NULL AND `id` > 2) OR (`x` IS NULL AND `id` = 1)] _
+test/tables/test_clickhouse_filters.py:70: in test_null_predicates_preserve_and_or_groups
+    assert where_clause(table._build_query(filters)) == expected
+E   AssertionError: assert '(`id` > 2) OR (`id` = 1)' == '(`x` IS NOT ...AND `id` = 1)'
+E     
+E     - (`x` IS NOT NULL AND `id` > 2) OR (`x` IS NULL AND `id` = 1)
+E     + (`id` > 2) OR (`id` = 1)
+________ test_unknown_operator_raises_before_client_creation[filters0] _________
+test/tables/test_clickhouse_filters.py:88: in test_unknown_operator_raises_before_client_creation
+    with pytest.raises(ValueError, match="Unsupported filter operator.*unsupported"):
+E   Failed: DID NOT RAISE ValueError
+________ test_unknown_operator_raises_before_client_creation[filters1] _________
+test/tables/test_clickhouse_filters.py:88: in test_unknown_operator_raises_before_client_creation
+    with pytest.raises(ValueError, match="Unsupported filter operator.*unsupported"):
+E   Failed: DID NOT RAISE ValueError
+________ test_unknown_operator_raises_before_client_creation[filters2] _________
+test/tables/test_clickhouse_filters.py:88: in test_unknown_operator_raises_before_client_creation
+    with pytest.raises(ValueError, match="Unsupported filter operator.*unsupported"):
+E   Failed: DID NOT RAISE ValueError
+________ test_unknown_operator_raises_before_client_creation[filters3] _________
+test/tables/test_clickhouse_filters.py:88: in test_unknown_operator_raises_before_client_creation
+    with pytest.raises(ValueError, match="Unsupported filter operator.*unsupported"):
+E   Failed: DID NOT RAISE ValueError
+_____________________ test_local_null_filter_rows[is-null] _____________________
+test/tables/test_clickhouse_filters_integration.py:57: in test_local_null_filter_rows
+    assert actual == expected_ids
+E   AssertionError: assert [1, 2, 3, 4] == [1, 3]
+E     
+E     At index 1 diff: 2 != 3
+E     Left contains 2 more items, first extra item: 3
+E     
+E     Full diff:
+E       [
+E           1,...
+E     
+E     ...Full output truncated (4 lines hidden), use '-vv' to show
+___________________ test_local_null_filter_rows[is-not-null] ___________________
+test/tables/test_clickhouse_filters_integration.py:57: in test_local_null_filter_rows
+    assert actual == expected_ids
+E   AssertionError: assert [1, 2, 3, 4] == [2, 4]
+E     
+E     At index 0 diff: 1 != 2
+E     Left contains 2 more items, first extra item: 3
+E     
+E     Full diff:
+E       [
+E     +     1,...
+E     
+E     ...Full output truncated (4 lines hidden), use '-vv' to show
+___________________ test_local_null_filter_rows[null-or-id] ____________________
+test/tables/test_clickhouse_filters_integration.py:57: in test_local_null_filter_rows
+    assert actual == expected_ids
+E   AssertionError: assert [2] == [1, 2, 3]
+E     
+E     At index 0 diff: 2 != 1
+E     Right contains 2 more items, first extra item: 2
+E     
+E     Full diff:
+E       [
+E     -     1,...
+E     
+E     ...Full output truncated (3 lines hidden), use '-vv' to show
+- generated xml file: /workspace/evidence/D1-02/baseline-installed.xml -
+=========================== short test summary info ============================
+FAILED test/tables/test_clickhouse_filters.py::test_null_predicates_ignore_placeholder[None-is null]
+FAILED test/tables/test_clickhouse_filters.py::test_null_predicates_ignore_placeholder[None-is not null]
+FAILED test/tables/test_clickhouse_filters.py::test_null_predicates_ignore_placeholder[unused'placeholder-is null]
+FAILED test/tables/test_clickhouse_filters.py::test_null_predicates_ignore_placeholder[unused'placeholder-is not null]
+FAILED test/tables/test_clickhouse_filters.py::test_null_predicates_ignore_placeholder[placeholder2-is null]
+FAILED test/tables/test_clickhouse_filters.py::test_null_predicates_ignore_placeholder[placeholder2-is not null]
+FAILED test/tables/test_clickhouse_filters.py::test_null_predicates_ignore_placeholder[placeholder3-is null]
+FAILED test/tables/test_clickhouse_filters.py::test_null_predicates_ignore_placeholder[placeholder3-is not null]
+FAILED test/tables/test_clickhouse_filters.py::test_null_predicates_do_not_format_value[is null]
+FAILED test/tables/test_clickhouse_filters.py::test_null_predicates_do_not_format_value[is not null]
+FAILED test/tables/test_clickhouse_filters.py::test_null_predicates_preserve_and_or_groups[filters0-(`x` IS NULL AND `id` = 1)]
+FAILED test/tables/test_clickhouse_filters.py::test_null_predicates_preserve_and_or_groups[filters1-(`x` IS NULL) OR (`id` = 2)]
+FAILED test/tables/test_clickhouse_filters.py::test_null_predicates_preserve_and_or_groups[filters2-(`x` IS NOT NULL AND `id` > 2) OR (`x` IS NULL AND `id` = 1)]
+FAILED test/tables/test_clickhouse_filters.py::test_unknown_operator_raises_before_client_creation[filters0]
+FAILED test/tables/test_clickhouse_filters.py::test_unknown_operator_raises_before_client_creation[filters1]
+FAILED test/tables/test_clickhouse_filters.py::test_unknown_operator_raises_before_client_creation[filters2]
+FAILED test/tables/test_clickhouse_filters.py::test_unknown_operator_raises_before_client_creation[filters3]
+FAILED test/tables/test_clickhouse_filters_integration.py::test_local_null_filter_rows[is-null]
+FAILED test/tables/test_clickhouse_filters_integration.py::test_local_null_filter_rows[is-not-null]
+FAILED test/tables/test_clickhouse_filters_integration.py::test_local_null_filter_rows[null-or-id]
+======================== 20 failed, 115 passed in 3.74s ========================

@@ -1,0 +1,15 @@
+{
+  "command": [
+    "uv",
+    "build",
+    "--wheel",
+    "--out-dir",
+    "../evidence/D3-03/dist"
+  ],
+  "cwd": "/workspace/datarepo-compat",
+  "environment_overrides": {},
+  "started_at": "2026-09-08T04:10:54.743212+00:00",
+  "duration_seconds": 24.588,
+  "exit_code": 0,
+  "output": "wheel-build.log"
+}

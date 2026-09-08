@@ -1,0 +1,17 @@
+{
+  "checked_at": "2026-09-08",
+  "sources": [
+    {
+      "url": "https://qupath.readthedocs.io/en/stable/docs/advanced/exporting_annotations.html",
+      "use": "Full-resolution image pixel coordinates; external interoperability is not assumed."
+    },
+    {
+      "url": "https://datatracker.ietf.org/doc/html/rfc7946#section-4",
+      "use": "Geographic WGS84 distinguishes RFC 7946 from this explicit pixel ROI profile."
+    },
+    {
+      "url": "https://shapely.readthedocs.io/en/stable/manual.html",
+      "use": "Planar polygon/multipart validity and independent expected geometries."
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "command": [
+    "../.venvs/sectioncheck/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "--junitxml=../evidence/B-workflow/tests-reviewed.xml"
+  ],
+  "cwd": "/workspace/sectioncheck",
+  "environment_overrides": {},
+  "started_at": "2026-09-08T04:56:10.550890+00:00",
+  "duration_seconds": 13.052,
+  "exit_code": 0,
+  "output": "tests-reviewed.log"
+}

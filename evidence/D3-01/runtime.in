@@ -1,0 +1,6 @@
+boto3>=1.26.20
+clickhouse-connect>=0.7.0
+deltalake>=0.25.4, <1
+polars>=1.9.0, <1.14.0
+pyarrow>=17.0.0
+ipython>=8.5.0

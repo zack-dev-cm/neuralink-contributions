@@ -1,0 +1,18 @@
+{
+  "command": [
+    "../.venvs/datarepo/bin/python",
+    "-m",
+    "pytest",
+    "test/test_local_quickstart.py",
+    "-q"
+  ],
+  "cwd": "/workspace/datarepo-docs",
+  "environment_overrides": {
+    "AWS_EC2_METADATA_DISABLED": "true",
+    "POLARS_MAX_THREADS": "2"
+  },
+  "started_at": "2026-09-08T04:12:56.006303+00:00",
+  "duration_seconds": 1.211,
+  "exit_code": 0,
+  "output": "tests-final.log"
+}

@@ -1,0 +1,18 @@
+{
+  "command": [
+    "/workspace/.venvs/sectioncheck-workflow-wheel/bin/python",
+    "-I",
+    "/workspace/sectioncheck/examples/exercise_synthetic_workflow.py",
+    "--fixtures",
+    "/workspace/sectioncheck/examples/synthetic",
+    "--out",
+    "/workspace/evidence/B-workflow/clean-reviewed",
+    "--require-wheel"
+  ],
+  "cwd": "/tmp",
+  "environment_overrides": {},
+  "started_at": "2026-09-08T04:57:04.497605+00:00",
+  "duration_seconds": 2.809,
+  "exit_code": 0,
+  "output": "clean-exercise-reviewed.log"
+}

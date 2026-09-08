@@ -1,0 +1,16 @@
+{
+  "command": [
+    "../.venvs/datarepo/bin/flake8",
+    "src/datarepo",
+    "--count",
+    "--select=E9,F63,F7,F82",
+    "--show-source",
+    "--statistics"
+  ],
+  "cwd": "/workspace/datarepo",
+  "environment_overrides": {},
+  "started_at": "2026-09-08T03:54:04.555924+00:00",
+  "duration_seconds": 0.925,
+  "exit_code": 0,
+  "output": "lint-fatal.log"
+}

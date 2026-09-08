@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/workspace/.venvs/datarepo39/bin/python",
+    "-I",
+    "/workspace/datarepo-compat/scripts/smoke_installed_wheel.py"
+  ],
+  "cwd": "/workspace/evidence/D1-04/wheel-smoke-cwd",
+  "environment_overrides": {
+    "AWS_EC2_METADATA_DISABLED": "true",
+    "POLARS_MAX_THREADS": "2"
+  },
+  "started_at": "2026-09-08T04:00:52.108000+00:00",
+  "duration_seconds": 1.427,
+  "exit_code": 1,
+  "output": "python39-import.log"
+}

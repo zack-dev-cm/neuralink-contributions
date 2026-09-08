@@ -1,0 +1,30 @@
+{
+  "command": [
+    "/workspace/.venvs/sectioncheck-workflow-wheel/bin/python",
+    "-I",
+    "-m",
+    "sectioncheck.cli",
+    "decide",
+    "manifest.json",
+    "--annotations",
+    "annotations.json",
+    "--review-fingerprint",
+    "d1c305d915ff66eafd2ed2c9ef9fd48f99ad83dafda346187622276efb33c90a",
+    "--reviewer-alias",
+    "automated-synthetic-exercise",
+    "--reason",
+    "Automated protocol exercise using original shapes; no person or researcher approved these data.",
+    "--decision",
+    "approve",
+    "--acknowledge",
+    "physical_calibration",
+    "--acknowledge",
+    "source_footprint",
+    "--out",
+    "/workspace/evidence/B-workflow/clean-reviewed/decision.json"
+  ],
+  "cwd": "/workspace/evidence/B-workflow/clean-reviewed/inputs",
+  "duration_seconds": 0.323412,
+  "exit_code": 0,
+  "expected_exit_code": 0
+}

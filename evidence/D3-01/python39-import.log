@@ -1,0 +1,22 @@
+Traceback (most recent call last):
+  File "/workspace/datarepo-compat/scripts/smoke_installed_wheel.py", line 10, in <module>
+    import datarepo
+  File "/workspace/.venvs/datarepo39/lib/python3.9/site-packages/datarepo/__init__.py", line 1, in <module>
+    from datarepo.core import Catalog, NlkDataFrame
+  File "/workspace/.venvs/datarepo39/lib/python3.9/site-packages/datarepo/core/__init__.py", line 1, in <module>
+    from datarepo.core.catalog import Catalog, Database, ModuleDatabase, CatalogMetadata
+  File "/workspace/.venvs/datarepo39/lib/python3.9/site-packages/datarepo/core/catalog/__init__.py", line 1, in <module>
+    from datarepo.core.catalog.catalog import (
+  File "/workspace/.venvs/datarepo39/lib/python3.9/site-packages/datarepo/core/catalog/catalog.py", line 7, in <module>
+    from datarepo.core.tables.metadata import TableProtocol
+  File "/workspace/.venvs/datarepo39/lib/python3.9/site-packages/datarepo/core/tables/__init__.py", line 1, in <module>
+    from datarepo.core.tables.decorator import table
+  File "/workspace/.venvs/datarepo39/lib/python3.9/site-packages/datarepo/core/tables/decorator.py", line 5, in <module>
+    from datarepo.core.tables.metadata import (
+  File "/workspace/.venvs/datarepo39/lib/python3.9/site-packages/datarepo/core/tables/metadata.py", line 5, in <module>
+    from datarepo.core.tables.util import RoapiOptions
+  File "/workspace/.venvs/datarepo39/lib/python3.9/site-packages/datarepo/core/tables/util.py", line 11, in <module>
+    from datarepo.core.tables.filters import Filter, NormalizedFilters
+  File "/workspace/.venvs/datarepo39/lib/python3.9/site-packages/datarepo/core/tables/filters.py", line 30, in <module>
+    InputFilters = Sequence[Filter] | Sequence[Sequence[Filter]]
+TypeError: unsupported operand type(s) for |: '_GenericAlias' and '_GenericAlias'

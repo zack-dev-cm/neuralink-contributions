@@ -1,0 +1,119 @@
+name: Independent datarepo validation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/datarepo.yml
+      - tools/with_local_clickhouse.py
+      - evidence/D1-01/requirements-linux-py312.lock
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  AWS_EC2_METADATA_DISABLED: 'true'
+  POLARS_MAX_THREADS: '2'
+
+jobs:
+  clickhouse:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: zack-dev-cm/datarepo
+          ref: 66fd1d372c9c2d390e52f541c18457da597cc0c2
+          path: datarepo
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install the measured environment
+        run: |
+          python -m pip install uv==0.11.19
+          uv venv --python 3.12 .venv
+          uv pip sync --python .venv/bin/python --require-hashes evidence/D1-01/requirements-linux-py312.lock
+          uv pip install --python .venv/bin/python --no-deps -e datarepo
+      - name: Fetch the exact standalone ClickHouse release
+        run: |
+          mkdir "$RUNNER_TEMP/clickhouse"
+          curl --fail --location --retry 3 -o "$RUNNER_TEMP/clickhouse/archive.tgz" https://github.com/ClickHouse/ClickHouse/releases/download/v26.3.32.14-lts/clickhouse-common-static-26.3.32.14-amd64.tgz
+          cd "$RUNNER_TEMP/clickhouse"
+          echo '6d79e28523e86a4530edd98596d8bc86bbbdbc7e5e3562f9da79f6488cf59e06  archive.tgz' | sha256sum --check
+          tar -xzf archive.tgz clickhouse-common-static-26.3.32.14/usr/bin/clickhouse
+      - name: Run all tests with a disposable local backend
+        working-directory: datarepo
+        run: |
+          python "$GITHUB_WORKSPACE/tools/with_local_clickhouse.py" --binary "$RUNNER_TEMP/clickhouse/clickhouse-common-static-26.3.32.14/usr/bin/clickhouse" --run-dir "$RUNNER_TEMP/clickhouse-run" -- "$GITHUB_WORKSPACE/.venv/bin/python" -m pytest test -v -s --junitxml="$RUNNER_TEMP/clickhouse-junit.xml"
+      - name: Check formatting, fatal lint and types
+        working-directory: datarepo
+        run: |
+          "$GITHUB_WORKSPACE/.venv/bin/black" --check src/datarepo
+          "$GITHUB_WORKSPACE/.venv/bin/flake8" src/datarepo --count --select=E9,F63,F7,F82 --show-source --statistics
+          "$GITHUB_WORKSPACE/.venv/bin/mypy" src/datarepo
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: clickhouse-validation
+          path: |
+            ${{ runner.temp }}/clickhouse-junit.xml
+            ${{ runner.temp }}/clickhouse-run/process.log
+  quickstart:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: zack-dev-cm/datarepo
+          ref: ec6b19441c9ebe8abd8dd8a4eef3d42f71aa0927
+          path: datarepo
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run the quick start and documentation regressions
+        run: |
+          python -m pip install uv==0.11.19
+          uv venv --python 3.12 .venv
+          uv pip sync --python .venv/bin/python --require-hashes evidence/D1-01/requirements-linux-py312.lock
+          uv pip install --python .venv/bin/python --no-deps -e datarepo
+          cd datarepo
+          "$GITHUB_WORKSPACE/.venv/bin/python" docs/examples/local_quickstart.py
+          "$GITHUB_WORKSPACE/.venv/bin/python" -m pytest test/test_local_quickstart.py -v --junitxml="$RUNNER_TEMP/quickstart-junit.xml"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: quickstart-validation
+          path: ${{ runner.temp }}/quickstart-junit.xml
+  installed-wheel:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.10', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: zack-dev-cm/datarepo
+          ref: ed8bdeba5deb66a6421360632745711f73eee5d6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Build and exercise an installed wheel outside the checkout
+        run: |
+          python -m pip install build
+          python -m build --wheel
+          wheel_env="$RUNNER_TEMP/datarepo-wheel-smoke"
+          python -m venv "$wheel_env"
+          "$wheel_env/bin/python" -m pip install dist/*.whl
+          cd "$RUNNER_TEMP"
+          "$wheel_env/bin/python" -I "$GITHUB_WORKSPACE/scripts/smoke_installed_wheel.py"

@@ -1,0 +1,29 @@
+{
+  "command": [
+    "python3",
+    "../tools/with_local_clickhouse.py",
+    "--binary",
+    "../.tools/clickhouse/clickhouse",
+    "--run-dir",
+    "../evidence/D1-04/clickhouse",
+    "--",
+    "../.venvs/datarepo/bin/python",
+    "-m",
+    "pytest",
+    "test",
+    "-v",
+    "-s",
+    "--tb=short",
+    "--cov=src/datarepo",
+    "--cov-report=term-missing",
+    "--junitxml=../evidence/D1-04/fixed-tests.xml"
+  ],
+  "cwd": "/workspace/datarepo",
+  "environment_overrides": {
+    "AWS_EC2_METADATA_DISABLED": "true"
+  },
+  "started_at": "2026-09-08T03:54:04.047723+00:00",
+  "duration_seconds": 6.015,
+  "exit_code": 0,
+  "output": "fixed-tests.log"
+}

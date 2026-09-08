@@ -1,0 +1,14 @@
+{
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "--runInBand"
+  ],
+  "cwd": "/workspace/asterics-aac",
+  "environment_overrides": {},
+  "started_at": "2026-09-08T03:48:30.461118+00:00",
+  "duration_seconds": 5.208,
+  "exit_code": 0,
+  "output": "upstream-jest.log"
+}

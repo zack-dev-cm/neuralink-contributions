@@ -1,0 +1,16 @@
+Boto3 session provided but no credentials found. Storage options will not include AWS credentials.
+{
+  "python": "3.12.3",
+  "isolated": true,
+  "imported_from": "/workspace/.venvs/datarepo-compat312/lib/python3.12/site-packages/datarepo/__init__.py",
+  "rows": [
+    {
+      "id": 2,
+      "value": 20
+    },
+    {
+      "id": 3,
+      "value": 30
+    }
+  ]
+}

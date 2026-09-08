@@ -1,0 +1,157 @@
+{
+  "browser": "firefox",
+  "version": "144.0.2",
+  "revision": "stable",
+  "pageErrors": [],
+  "online": {
+    "scope": "real upstream component methods; no full-app keyboard, speech, or collaborator validation",
+    "defect_reproduced": true,
+    "fixture_unchanged": true,
+    "results": [
+      {
+        "name": "level-8",
+        "visible": [
+          "eight"
+        ],
+        "found": [
+          "eight",
+          "manual",
+          "ten",
+          "unlevelled"
+        ],
+        "unavailableResults": [
+          "manual",
+          "ten",
+          "unlevelled"
+        ]
+      },
+      {
+        "name": "level-10",
+        "visible": [
+          "eight",
+          "ten"
+        ],
+        "found": [
+          "eight",
+          "manual",
+          "ten",
+          "unlevelled"
+        ],
+        "unavailableResults": [
+          "manual",
+          "unlevelled"
+        ]
+      },
+      {
+        "name": "unrestricted",
+        "visible": [
+          "eight",
+          "ten",
+          "unlevelled"
+        ],
+        "found": [
+          "eight",
+          "manual",
+          "ten",
+          "unlevelled"
+        ],
+        "unavailableResults": [
+          "manual"
+        ]
+      },
+      {
+        "name": "local-toggle-8",
+        "visible": [
+          "eight"
+        ],
+        "found": [
+          "eight",
+          "manual",
+          "ten",
+          "unlevelled"
+        ],
+        "unavailableResults": [
+          "manual",
+          "ten",
+          "unlevelled"
+        ]
+      }
+    ]
+  },
+  "offline": {
+    "scope": "real upstream component methods; no full-app keyboard, speech, or collaborator validation",
+    "defect_reproduced": true,
+    "fixture_unchanged": true,
+    "results": [
+      {
+        "name": "level-8",
+        "visible": [
+          "eight"
+        ],
+        "found": [
+          "eight",
+          "manual",
+          "ten",
+          "unlevelled"
+        ],
+        "unavailableResults": [
+          "manual",
+          "ten",
+          "unlevelled"
+        ]
+      },
+      {
+        "name": "level-10",
+        "visible": [
+          "eight",
+          "ten"
+        ],
+        "found": [
+          "eight",
+          "manual",
+          "ten",
+          "unlevelled"
+        ],
+        "unavailableResults": [
+          "manual",
+          "unlevelled"
+        ]
+      },
+      {
+        "name": "unrestricted",
+        "visible": [
+          "eight",
+          "ten",
+          "unlevelled"
+        ],
+        "found": [
+          "eight",
+          "manual",
+          "ten",
+          "unlevelled"
+        ],
+        "unavailableResults": [
+          "manual"
+        ]
+      },
+      {
+        "name": "local-toggle-8",
+        "visible": [
+          "eight"
+        ],
+        "found": [
+          "eight",
+          "manual",
+          "ten",
+          "unlevelled"
+        ],
+        "unavailableResults": [
+          "manual",
+          "ten",
+          "unlevelled"
+        ]
+      }
+    ]
+  },
+  "recorded_at": "2026-09-08T04:11:37.102Z"
+}

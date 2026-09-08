@@ -1,0 +1,20 @@
+{
+  "command": [
+    "/workspace/.venvs/sectioncheck-workflow-wheel/bin/python",
+    "-I",
+    "-m",
+    "sectioncheck.cli",
+    "export",
+    "manifest.json",
+    "--annotations",
+    "annotations.json",
+    "--decision-file",
+    "/workspace/evidence/B-workflow/clean-reviewed/decision.json",
+    "--out",
+    "/workspace/evidence/B-workflow/clean-reviewed/export"
+  ],
+  "cwd": "/workspace/evidence/B-workflow/clean-reviewed/inputs",
+  "duration_seconds": 0.307802,
+  "exit_code": 0,
+  "expected_exit_code": 0
+}

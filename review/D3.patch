@@ -1,0 +1,126 @@
+diff --git a/.github/workflows/installed-wheel-smoke.yml b/.github/workflows/installed-wheel-smoke.yml
+new file mode 100644
+index 0000000..53d7f68
+--- /dev/null
++++ b/.github/workflows/installed-wheel-smoke.yml
+@@ -0,0 +1,39 @@
++name: Installed wheel smoke
++
++on:
++  pull_request:
++  workflow_dispatch:
++
++permissions:
++  contents: read
++
++jobs:
++  installed-wheel:
++    runs-on: ubuntu-24.04
++    strategy:
++      fail-fast: false
++      matrix:
++        python-version: ['3.10', '3.12']
++    env:
++      AWS_EC2_METADATA_DISABLED: 'true'
++      POLARS_MAX_THREADS: '2'
++    steps:
++      - uses: actions/checkout@v4
++      - uses: actions/setup-node@v4
++        with:
++          node-version: '22'
++      - uses: actions/setup-python@v5
++        with:
++          python-version: ${{ matrix.python-version }}
++      - name: Build the wheel including the static catalog
++        run: |
++          python -m pip install build
++          python -m build --wheel
++      - name: Install and read local data outside the checkout
++        shell: bash
++        run: |
++          wheel_env="$RUNNER_TEMP/datarepo-wheel-smoke"
++          python -m venv "$wheel_env"
++          "$wheel_env/bin/python" -m pip install dist/*.whl
++          cd "$RUNNER_TEMP"
++          "$wheel_env/bin/python" -I "$GITHUB_WORKSPACE/scripts/smoke_installed_wheel.py"
+diff --git a/docs/compatibility.md b/docs/compatibility.md
+new file mode 100644
+index 0000000..6fca5a8
+--- /dev/null
++++ b/docs/compatibility.md
+@@ -0,0 +1,18 @@
++# Python compatibility
++
++The minimum Python version is 3.10. Runtime type aliases use the union operator,
++and Python 3.9 fails while importing `datarepo.core.tables.filters` even after
++its dependencies install. The existing Python 3.8 declaration also cannot
++resolve a binary-wheel environment for the required Delta Lake versions on
++the tested Linux x86-64 host. These are distinct failures.
++
++The installed-wheel smoke workflow builds the package, including its static
++catalog, then installs into a fresh environment and reads a local Parquet table
++with Python 3.10 and 3.12 on Ubuntu 24.04. It runs with `python -I` outside the
++source directory and verifies the package comes from `site-packages`.
++
++Building from source needs Python build tooling, Node.js and npm because the
++existing Hatch hook compiles the web catalog. The dependency caps for Polars
++and Delta Lake are unchanged. This check covers installation, import, and one
++local table read; it does not establish every backend or platform combination.
++Other Python versions, Windows and macOS are not validated by this Linux job.
+diff --git a/pyproject.toml b/pyproject.toml
+index fc74bc9..8cc093e 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -7,7 +7,7 @@ name = "data-repository"
+ version = "0.1.0"
+ description = "A simple platform for complex data"
+ readme = "docs/README.md"
+-requires-python = ">=3.8"
++requires-python = ">=3.10"
+ license = { text = "Apache-2.0" }
+ authors = [
+     { name = "Gautham Acharya", email = "gautacharya@gmail.com" }
+diff --git a/scripts/smoke_installed_wheel.py b/scripts/smoke_installed_wheel.py
+new file mode 100644
+index 0000000..051125b
+--- /dev/null
++++ b/scripts/smoke_installed_wheel.py
+@@ -0,0 +1,38 @@
++"""Run with python -I from outside the checkout after installing a built wheel."""
++
++import json
++from pathlib import Path
++import platform
++import sys
++from tempfile import TemporaryDirectory
++
++import polars as pl
++import datarepo
++from datarepo.core import Filter, ParquetTable
++
++
++origin = Path(datarepo.__file__).resolve()
++if "site-packages" not in origin.parts:
++    raise AssertionError(f"Expected a wheel installation, imported {origin}")
++with TemporaryDirectory(prefix="datarepo-wheel-smoke-") as directory:
++    path = Path(directory) / "example.parquet"
++    pl.DataFrame({"id": [1, 2, 3], "value": [10, 20, 30]}).write_parquet(path)
++    table = ParquetTable(name="example", uri=str(path), partitioning=[])
++    result = (
++        table(filters=[Filter("value", ">", 10)], columns=["id", "value"])
++        .collect()
++        .sort("id")
++    )
++    assert result.to_dicts() == [{"id": 2, "value": 20}, {"id": 3, "value": 30}]
++    assert result.schema == {"id": pl.Int64, "value": pl.Int64}
++print(
++    json.dumps(
++        {
++            "python": platform.python_version(),
++            "isolated": bool(sys.flags.isolated),
++            "imported_from": str(origin),
++            "rows": result.to_dicts(),
++        },
++        indent=2,
++    )
++)

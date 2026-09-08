@@ -1,0 +1,28 @@
+{
+  "scope": "synthetic engineering prototype",
+  "version": "0.2.0.dev0",
+  "source_commit": "3a6e4edf081593e94d722d5d4476b8d46a2f9cfa",
+  "ci_url": "https://github.com/zack-dev-cm/sectioncheck/actions/runs/34190288276",
+  "ci_result": "success",
+  "ci_tests": {
+    "passed": 81,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "wheel_identical_between_local_and_hosted_builds": true,
+  "wheel_sha256": "6bd61b9cb7dc1dc1e5c6f55928663d7ee9e242d7fe92c2a0fb3baec2e4d92254",
+  "clean_installed_wheel_exercise": "passed locally and on GitHub Actions",
+  "independent_expected_geometry": {
+    "features": 2,
+    "polygon_parts": 3,
+    "holes": 1,
+    "areas_pixels_squared": [
+      2700,
+      3775
+    ]
+  },
+  "human_researcher_approval": false,
+  "external_viewer_reimport": "NOT RUN",
+  "valis_adapter": "NOT RUN"
+}

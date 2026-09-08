@@ -1,0 +1,21 @@
+{
+  "command": [
+    "uv",
+    "pip",
+    "compile",
+    "--quiet",
+    "--python-version",
+    "3.8",
+    "--only-binary",
+    ":all:",
+    "--output-file",
+    "evidence/D3-01/python38.lock",
+    "evidence/D3-01/runtime.in"
+  ],
+  "cwd": "/workspace",
+  "environment_overrides": {},
+  "started_at": "2026-09-08T03:50:49.809012+00:00",
+  "duration_seconds": 3.614,
+  "exit_code": 1,
+  "output": "python38-resolve.log"
+}

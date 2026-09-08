@@ -1,0 +1,24 @@
+{
+  "development": {
+    "sha": "4696c6e38acc13e77f2acfb929e3fd915ff8db35",
+    "source_hashes": {
+      "src/vue-components/modals/searchModal.vue": "e8355688ed06ed9eaf1f1891a2318f480b3cfeebcaba7dbf4da7b686ca38a9f6",
+      "src/vue-components/views/gridView.vue": "a62a513e12e97c41e8e560015eb77f8e65d817651d0b7d3ad49e3f37ee65ba46",
+      "src/js/util/gridUtil.js": "564a6140025cdc1b6a5aabe022afd3e153db33f7fb2334e4142f1daaa79858b8",
+      "yarn.lock": "c9a17829de6eb1a3000143505c09bdbb26b4bd2d6eabbebd96aa17a63bdd013c",
+      "docs/documentation_dev/collaboration.md": "b60d27e04c7a66caf7e405e42953b5113d8f6bacab9c0364c15726f229ad3b00"
+    }
+  },
+  "stable": {
+    "sha": "0e3fe7624989688c7877b4ffa75804db060e5c57",
+    "source_hashes": {
+      "src/vue-components/modals/searchModal.vue": "e8355688ed06ed9eaf1f1891a2318f480b3cfeebcaba7dbf4da7b686ca38a9f6",
+      "src/vue-components/views/gridView.vue": "a62a513e12e97c41e8e560015eb77f8e65d817651d0b7d3ad49e3f37ee65ba46",
+      "src/js/util/gridUtil.js": "564a6140025cdc1b6a5aabe022afd3e153db33f7fb2334e4142f1daaa79858b8",
+      "yarn.lock": "c9a17829de6eb1a3000143505c09bdbb26b4bd2d6eabbebd96aa17a63bdd013c",
+      "docs/documentation_dev/collaboration.md": "b60d27e04c7a66caf7e405e42953b5113d8f6bacab9c0364c15726f229ad3b00"
+    }
+  },
+  "release_tag": "release-2026-09-03-10.08/+0200",
+  "scope": "Component-method browser fixture audit; no full-app keyboard, speech, assistive-hardware, or user trial claims"
+}

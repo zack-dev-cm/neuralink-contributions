@@ -1,0 +1,12 @@
+.venv/
+.browser/
+__pycache__/
+*.py[cod]
+node_modules
+asterics-aac/
+asterics-aac-stable/
+datarepo/
+aac-audit/stable/
+aac-audit/development/
+local-clickhouse-run/
+.env

@@ -1,0 +1,41 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+assets by status 5.07 MiB [cached] 1 asset
+assets by chunk 2.36 MiB (id hint: vendors)
+  assets by status 1.38 MiB [big]
+    asset 457.bundle.js 1.05 MiB [compared for emit] [minimized] [big] (id hint: vendors) 1 related asset
+    asset jspdf.bundle.js 337 KiB [compared for emit] [minimized] [big] (name: jspdf) (id hint: vendors) 1 related asset
+  + 8 assets
+assets by status 1.36 MiB [emitted]
+  asset asterics-aac.bundle.js 1.29 MiB [emitted] [minimized] [big] (name: main) 1 related asset
+  asset 844.bundle.js 75.6 KiB [emitted] [compared for emit] [minimized]
+asset 819.bundle.js 6.1 KiB [compared for emit] [minimized]
+asset 806.bundle.js 3.79 KiB [compared for emit] [minimized]
+orphan modules 4.2 MiB [orphan] 1643 modules
+runtime modules 9.59 KiB 19 modules
+built modules 8.79 MiB (javascript) 5.07 MiB (asset) [built]
+  modules by path ./node_modules/ 6.62 MiB (javascript) 5.07 MiB (asset)
+    javascript modules 6.57 MiB 561 modules
+    ./node_modules/unhomoglyph/data.json 54.2 KiB [built] [code generated]
+    ./node_modules/@matrix-org/matrix-sdk-crypto-wasm/pkg/matrix_sdk_crypt...(truncated) 42 bytes (javascript) 5.07 MiB (asset) [built] [code generated]
+  modules by path ./src/ 2.09 MiB
+    cacheable modules 2.06 MiB 160 modules
+    ./src/js/externals/jquery.js + 1 modules 83 bytes [not cacheable] [built] [code generated]
+    ./src/js/service/data/pouchDbService.js + 2 modules 27.3 KiB [not cacheable] [built] [code generated]
+  modules by path ./app/lib/*.js 82.3 KiB
+    ./app/lib/console.re.connector.js 75.8 KiB [built] [code generated]
+    ./app/lib/uart.min.js 6.5 KiB [built] [code generated]
+
+WARNING in asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
+This can impact web performance.
+Assets: 
+  asterics-aac.bundle.js (1.29 MiB)
+  457.bundle.js (1.05 MiB)
+  jspdf.bundle.js (337 KiB)
+  7cb3661b763a0eef328b.wasm (5.07 MiB)
+
+WARNING in entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
+Entrypoints:
+  main (1.29 MiB)
+      asterics-aac.bundle.js
+
+webpack 5.94.0 compiled with 2 warnings in 60154 ms

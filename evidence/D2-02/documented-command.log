@@ -1,0 +1,21 @@
+Boto3 session provided but no credentials found. Storage options will not include AWS credentials.
+[
+  {
+    "part_id": 1,
+    "part_name": "Bolt",
+    "supplier_id": 20,
+    "supplier_name": "Supplier B"
+  },
+  {
+    "part_id": 2,
+    "part_name": "Nut",
+    "supplier_id": 10,
+    "supplier_name": "Supplier A"
+  },
+  {
+    "part_id": 3,
+    "part_name": "Washer",
+    "supplier_id": 20,
+    "supplier_name": "Supplier B"
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "command": [
+    "npx",
+    "--yes",
+    "yarn@1.22.22",
+    "install",
+    "--frozen-lockfile",
+    "--non-interactive"
+  ],
+  "cwd": "/workspace/asterics-aac",
+  "environment_overrides": {
+    "HUSKY": "0"
+  },
+  "started_at": "2026-09-08T03:44:03.287317+00:00",
+  "duration_seconds": 209.267,
+  "exit_code": 0,
+  "output": "install.log"
+}

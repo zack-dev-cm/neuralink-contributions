@@ -1,0 +1,27 @@
+{
+  "command": [
+    "python3",
+    "../tools/with_local_clickhouse.py",
+    "--binary",
+    "../.tools/clickhouse/clickhouse",
+    "--run-dir",
+    "../evidence/D1-02/clickhouse-installed",
+    "--",
+    "../.venvs/datarepo/bin/python",
+    "-m",
+    "pytest",
+    "test",
+    "-v",
+    "-s",
+    "--tb=short",
+    "--junitxml=../evidence/D1-02/baseline-installed.xml"
+  ],
+  "cwd": "/workspace/datarepo",
+  "environment_overrides": {
+    "AWS_EC2_METADATA_DISABLED": "true"
+  },
+  "started_at": "2026-09-08T03:53:00.899739+00:00",
+  "duration_seconds": 6.643,
+  "exit_code": 1,
+  "output": "baseline-installed.log"
+}

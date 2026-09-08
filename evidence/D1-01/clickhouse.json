@@ -1,0 +1,7 @@
+{
+  "version": "26.3.32.14",
+  "archive_sha256": "6d79e28523e86a4530edd98596d8bc86bbbdbc7e5e3562f9da79f6488cf59e06",
+  "source": "https://github.com/ClickHouse/ClickHouse/releases/tag/v26.3.32.14-lts",
+  "binary_sha256": "07e5d5d20efa0a9d6ec9d1e7e6253625a8c1de45361be6b60b858537f5daa501",
+  "installation": "workspace-local standalone binary; no system installation"
+}

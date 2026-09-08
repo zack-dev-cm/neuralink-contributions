@@ -1,0 +1,15 @@
+{
+  "command": [
+    "../.venvs/datarepo/bin/python",
+    "docs/examples/local_quickstart.py"
+  ],
+  "cwd": "/workspace/datarepo-docs",
+  "environment_overrides": {
+    "AWS_EC2_METADATA_DISABLED": "true",
+    "POLARS_MAX_THREADS": "2"
+  },
+  "started_at": "2026-09-08T04:23:04.491887+00:00",
+  "duration_seconds": 0.575,
+  "exit_code": 0,
+  "output": "documented-command.log"
+}

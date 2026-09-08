@@ -1,0 +1,258 @@
+diff --git a/src/datarepo/core/tables/clickhouse_table.py b/src/datarepo/core/tables/clickhouse_table.py
+index b4ace17..339d5a7 100644
+--- a/src/datarepo/core/tables/clickhouse_table.py
++++ b/src/datarepo/core/tables/clickhouse_table.py
+@@ -223,6 +223,10 @@ class ClickHouseTable(TableProtocol):
+ 
+         Returns:
+             str: SQL query string to select data from the ClickHouse table.
++
++        Raises:
++            ValueError: If a filter uses an unsupported operator. Unary null
++                predicates ignore Filter.value.
+         """
+         config = config or self.config
+         table_name = config.table_name or self.name
+@@ -280,6 +284,10 @@ class ClickHouseTable(TableProtocol):
+                             format_value_for_sql(v) for v in cast(list, f.value)
+                         )
+                         set_expressions.append(f"`{f.column}` NOT IN ({values})")
++                    elif f.operator == "is null":
++                        set_expressions.append(f"`{f.column}` IS NULL")
++                    elif f.operator == "is not null":
++                        set_expressions.append(f"`{f.column}` IS NOT NULL")
+                     elif f.operator in [
+                         "contains",
+                         "includes",
+@@ -289,6 +297,8 @@ class ClickHouseTable(TableProtocol):
+                         set_expressions.append(
+                             f"`{f.column}` LIKE {format_value_for_sql(f.value)}"
+                         )
++                    else:
++                        raise ValueError(f"Unsupported filter operator: {f.operator!r}")
+ 
+                 if set_expressions:
+                     filter_expressions.append("(" + " AND ".join(set_expressions) + ")")
+@@ -323,6 +333,10 @@ class ClickHouseTable(TableProtocol):
+ 
+         Returns:
+             NlkDataFrame: A lazy Polars DataFrame with the requested data.
++
++        Raises:
++            ValueError: If a filter uses an unsupported operator, before creating
++                a backend client or executing a query.
+         """
+         config = config or self.config
+ 
+diff --git a/test/tables/test_clickhouse_filters.py b/test/tables/test_clickhouse_filters.py
+new file mode 100644
+index 0000000..bcd193d
+--- /dev/null
++++ b/test/tables/test_clickhouse_filters.py
+@@ -0,0 +1,135 @@
++"""Regression tests for ClickHouse filter predicates and existing grouping rules."""
++
++from typing import cast
++from unittest.mock import patch
++
++import pyarrow as pa
++import pytest
++
++from datarepo.core.tables.clickhouse_table import ClickHouseTable, ClickHouseTableConfig
++from datarepo.core.tables.filters import Filter, FilterOperator
++
++
++@pytest.fixture
++def table():
++    return ClickHouseTable(
++        name="filter_rows",
++        schema=pa.schema(
++            [("id", pa.int64()), ("x", pa.int64()), ("label", pa.string())]
++        ),
++        config=ClickHouseTableConfig(host="127.0.0.1", database="default"),
++    )
++
++
++def where_clause(query):
++    """Ignore formatting outside the predicate; keep grouping observable."""
++    return query.partition("WHERE")[2].strip()
++
++
++@pytest.mark.parametrize("operator", ["is null", "is not null"])
++@pytest.mark.parametrize("placeholder", [None, "unused'placeholder", [], [1, 2]])
++def test_null_predicates_ignore_placeholder(table, operator, placeholder):
++    query = table._build_query([Filter("x", operator, placeholder)])
++    assert where_clause(query) == f"(`x` {operator.upper()})"
++
++
++@pytest.mark.parametrize("operator", ["is null", "is not null"])
++def test_null_predicates_do_not_format_value(table, operator):
++    class Unformattable:
++        def __str__(self):
++            raise AssertionError("Unary predicates must not evaluate Filter.value")
++
++    with patch(
++        "datarepo.core.tables.clickhouse_table.format_value_for_sql",
++        side_effect=AssertionError("Unary predicates must not format Filter.value"),
++    ) as formatter:
++        query = table._build_query([Filter("x", operator, Unformattable())])
++    formatter.assert_not_called()
++    assert where_clause(query) == f"(`x` {operator.upper()})"
++
++
++@pytest.mark.parametrize(
++    "filters,expected",
++    [
++        (
++            [Filter("x", "is null", None), Filter("id", "=", 1)],
++            "(`x` IS NULL AND `id` = 1)",
++        ),
++        (
++            [[Filter("x", "is null", None)], [Filter("id", "=", 2)]],
++            "(`x` IS NULL) OR (`id` = 2)",
++        ),
++        (
++            [
++                [Filter("x", "is not null", None), Filter("id", ">", 2)],
++                [Filter("x", "is null", None), Filter("id", "=", 1)],
++            ],
++            "(`x` IS NOT NULL AND `id` > 2) OR (`x` IS NULL AND `id` = 1)",
++        ),
++    ],
++)
++def test_null_predicates_preserve_and_or_groups(table, filters, expected):
++    assert where_clause(table._build_query(filters)) == expected
++
++
++UNKNOWN_FILTER = Filter("x", cast(FilterOperator, "unsupported"), None)
++
++
++@pytest.mark.parametrize(
++    "filters",
++    [
++        [UNKNOWN_FILTER],
++        [Filter("id", "=", 1), UNKNOWN_FILTER],
++        [[Filter("id", "=", 1)], [UNKNOWN_FILTER]],
++        [[], [Filter("id", "=", 1), UNKNOWN_FILTER]],
++    ],
++)
++def test_unknown_operator_raises_before_client_creation(table, filters):
++    with patch("clickhouse_connect.get_client") as get_client:
++        get_client.return_value.query_arrow.return_value = pa.table({"id": [1]})
++        with pytest.raises(
++            ValueError, match="Unsupported filter operator.*unsupported"
++        ):
++            table(filters=filters)
++    get_client.assert_not_called()
++
++
++@pytest.mark.parametrize("filters", [None, [], [[]], [[], []]])
++def test_existing_empty_filter_behavior(table, filters):
++    assert where_clause(table._build_query(filters)) == ""
++
++
++def test_empty_group_alongside_nonempty_group_is_ignored(table):
++    filters = [[], [Filter("id", "=", 2)], []]
++    assert where_clause(table._build_query(filters)) == "(`id` = 2)"
++
++
++@pytest.mark.parametrize(
++    "operator,value,expected",
++    [
++        ("=", None, "`x` = NULL"),
++        ("!=", 2, "`x` != 2"),
++        ("<", 2, "`x` < 2"),
++        ("<=", 2, "`x` <= 2"),
++        (">", 2, "`x` > 2"),
++        (">=", 2, "`x` >= 2"),
++        ("in", [1, 2], "`x` IN (1, 2)"),
++        ("not in", [1, 2], "`x` NOT IN (1, 2)"),
++        ("in", [], "`x` IN ()"),
++        ("not in", [], "`x` NOT IN ()"),
++        ("contains", "%cat%", "`x` LIKE '%cat%'"),
++        ("includes", "%cat%", "`x` LIKE '%cat%'"),
++        ("includes any", "%cat%", "`x` LIKE '%cat%'"),
++        ("includes all", "%cat%", "`x` LIKE '%cat%'"),
++    ],
++)
++def test_recognized_operator_behavior_is_unchanged(table, operator, value, expected):
++    assert where_clause(table._build_query([Filter("x", operator, value)])) == (
++        f"({expected})"
++    )
++
++
++def test_existing_invalid_column_behavior_is_unchanged(table):
++    query = table._build_query([Filter("unknown", "=", 2)], columns=["unknown"])
++    assert query.startswith("SELECT * FROM")
++    assert where_clause(query) == "(`unknown` = 2)"
+diff --git a/test/tables/test_clickhouse_filters_integration.py b/test/tables/test_clickhouse_filters_integration.py
+new file mode 100644
+index 0000000..a5fb5f6
+--- /dev/null
++++ b/test/tables/test_clickhouse_filters_integration.py
+@@ -0,0 +1,65 @@
++"""Opt-in local ClickHouse checks; set DATAREPO_TEST_CLICKHOUSE_PORT to run.
++
++Only a uniquely named disposable table on 127.0.0.1 is created and dropped.
++An explicitly requested but unavailable backend fails instead of skipping.
++"""
++
++import os
++from uuid import uuid4
++
++import pyarrow as pa
++import pytest
++
++from datarepo.core.tables.clickhouse_table import ClickHouseTable, ClickHouseTableConfig
++from datarepo.core.tables.filters import Filter
++
++
++@pytest.fixture(scope="module")
++def local_table():
++    port = os.environ.get("DATAREPO_TEST_CLICKHOUSE_PORT")
++    if port is None:
++        pytest.skip(
++            "set DATAREPO_TEST_CLICKHOUSE_PORT for local ClickHouse integration"
++        )
++    name = f"datarepo_null_filters_{uuid4().hex}"
++    config = ClickHouseTableConfig(
++        host="127.0.0.1", port=int(port), database="default", table_name=name
++    )
++    client = config.get_client()
++    created = False
++    try:
++        client.command(
++            f"CREATE TABLE `{name}` (id Int64, x Nullable(Int64)) ENGINE = Memory"
++        )
++        created = True
++        client.insert(
++            name, [(1, None), (2, 10), (3, None), (4, 20)], column_names=["id", "x"]
++        )
++        print(f"ClickHouse version: {client.command('SELECT version()')}")
++        yield ClickHouseTable(
++            name=name,
++            schema=pa.schema([("id", pa.int64()), ("x", pa.int64())]),
++            config=config,
++        )
++    finally:
++        if created:
++            client.command(f"DROP TABLE `{name}`")
++        client.close()
++
++
++@pytest.mark.parametrize(
++    "filters,expected_ids",
++    [
++        ([Filter("x", "is null", None)], [1, 3]),
++        ([Filter("x", "is not null", None)], [2, 4]),
++        ([Filter("x", "is null", None), Filter("id", "=", 1)], [1]),
++        ([[Filter("x", "is null", None)], [Filter("id", "=", 2)]], [1, 2, 3]),
++        (None, [1, 2, 3, 4]),
++    ],
++    ids=["is-null", "is-not-null", "null-and-id", "null-or-id", "no-filters"],
++)
++def test_local_null_filter_rows(local_table, filters, expected_ids):
++    rows = local_table(filters=filters, columns=["id"]).collect()
++    actual = sorted(rows["id"].to_list())
++    print(f"{local_table._build_query(filters, ['id'])}: {actual}")
++    assert actual == expected_ids
